@@ -1,0 +1,22 @@
+.ToolbarUser {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.ToolbarUser div {
+  box-sizing: border-box;
+  display: block;
+  padding: 0 6px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ToolbarUser img {
+  height: 20px;
+}

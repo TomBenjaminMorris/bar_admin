@@ -1,0 +1,17 @@
+.AdminPane {
+  text-align: center;
+  margin: auto;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+}
+
+.AdminPane p {
+  
+}
+
+
+@media (min-width: 500px) {
+  .AdminPane {
+    width: 80%;
+  }
+}
