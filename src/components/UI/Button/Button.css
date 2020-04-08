@@ -3,17 +3,26 @@
   color: whitesmoke;
   outline: none;
   cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 25px;
+  padding: 8px 15px;
   margin-top: 10px;
   margin-right: 10px;
   font-weight: bold;
+  min-width: 90px;
 }
 
 .Save {
   background-color: #5C9210;
 }
 
+.Save:hover {
+  background-color: rgb(128, 196, 33);
+}
+
 .Edit {
-  background-color: #944317;
+  background-color: #c15f2b;
+}
+
+.Edit:hover {
+  background-color: #e97b40;
 }
