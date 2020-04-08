@@ -1,0 +1,42 @@
+.LocationDetailItem {
+  padding: 10px;
+  flex: 40%;
+}
+
+.LocationDetailItem h2 {
+  font-size: 22px;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.LocationDetailItem input {
+  margin: auto;
+  font-size: 20px;
+  margin-top: 12px;
+  padding: 5px;
+  border: white solid 1px;
+  border-radius: 3px;
+  box-shadow: 0 0 1px #b8b8b8;
+  min-width: 220px;
+}
+
+.LocationDetailItem input:focus{
+  outline: none !important;
+  border:1px solid #ffbc2c;
+  box-shadow: 0 0 5px #ffbc2c;
+}
+
+.Pill {
+  font-family: Circular-bold;
+  padding-bottom: 10px;
+  border: none;
+  /* background-color: hsla(0,0%,87%,.966); */
+  /* background-color: rgb(128, 128, 128); */
+  background-color: #f4b42c;
+  color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 2px;
+  margin-top: 20px;
+}

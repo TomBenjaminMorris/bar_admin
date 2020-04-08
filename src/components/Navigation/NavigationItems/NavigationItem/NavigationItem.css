@@ -9,7 +9,7 @@
 .NavigationItem a {
   font-weight: bold;
   font-size: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(238, 237, 237);
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
@@ -31,4 +31,10 @@
 .NavigationItem a:active,
 .NavigationItem a.active {
   color: rgb(238, 128, 31);
+}
+
+@media (max-width: 499px) {
+  .NavigationItem div {
+    margin-left: 22px;
+  }
 }

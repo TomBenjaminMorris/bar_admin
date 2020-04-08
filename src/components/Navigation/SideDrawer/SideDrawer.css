@@ -6,10 +6,13 @@
   left: 0;
   top: 0;
   z-index: 200;
-  background-color: white;
-  padding: 32px 16px;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
+
+
+  /* width: 220px; */
+  background-color: rgb(74, 74, 74);
+  padding: 55px 16px;
 }
 
 @media (min-width: 500px) {
@@ -27,6 +30,8 @@
 }
 
 .Logo {
-  height: 11%;
-  margin-bottom: 32px;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 20px;
 }
