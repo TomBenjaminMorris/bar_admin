@@ -5,10 +5,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
-axios.get('https://hapihour.io/api/jwt')
+axios.defaults.baseURL = 'https://hapihour.io/api';
+axios.get('/jwt')
   .then(response => {
-    console.log(response);
+    axios.defaults.headers.common['Authorization'] = 'jwt ' + response.data;
+    console.log('Index request: ' + response.data);
+    ReactDOM.render(<App />, document.getElementById('root'));
+    registerServiceWorker();
+  })
+  .catch(error => {
+    console.log('Index error: ' + error);
   });
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
