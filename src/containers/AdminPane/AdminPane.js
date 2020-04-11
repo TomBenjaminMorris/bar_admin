@@ -50,6 +50,7 @@ const locationDetails = {
 class AdminPane extends Component {
   state = {
     editing: false,
+    saving: true,
   };
 
   handleEditing = () => {
@@ -59,10 +60,17 @@ class AdminPane extends Component {
     this.setState({ editing: true });
   };
 
-  handleSave = () => {
-    this.setState({ editing: false });
-    // alert("You saved the location");
+  handleInitialSave = () => {
+    this.setState({ saving: true });
   };
+
+  handleSave = () => {
+    this.setState({ editing: false, saving: false });
+  };
+
+  savingCancelledHandler = () => {
+    this.setState({ editing: false, saving: false });
+  }
 
   render() {
     return (
@@ -70,8 +78,11 @@ class AdminPane extends Component {
         <LocationDetails
           locationDetails={locationDetails}
           edit={this.handleEditing}
+          initialSave={this.handleInitialSave}
           save={this.handleSave}
           editing={this.state.editing}
+          saving={this.state.saving}
+          savingCancelled={this.savingCancelledHandler}
         />
       </div>
     );
