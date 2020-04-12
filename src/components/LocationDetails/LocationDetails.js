@@ -5,6 +5,7 @@ import Line from "../UI/Line/Line";
 import LocationDetailItems from "./LocationDetailItems/LocationDetailItems";
 import Button from "../UI/Button/Button";
 import Modal from "../UI/Modal/Modal";
+import Aux from '../../hoc/Aux/Aux';
 
 class LocationDetails extends Component {
 
@@ -31,9 +32,14 @@ class LocationDetails extends Component {
 
         <div className={classes.DetailsButton}>
           {this.props.editing ? (
-            <Button btnType={"Save"} clicked={this.props.initialSave}>
-              Save
-            </Button>
+            <Aux>
+              <Button btnType={"Save"} clicked={this.props.initialSave}>
+                Save
+              </Button>
+              <Button btnType={"Edit"} clicked={this.props.savingCancelled}>
+                Cancel
+              </Button>
+            </Aux>
           ) : (
             <Button btnType={"Edit"} clicked={this.props.edit}>
               Edit
