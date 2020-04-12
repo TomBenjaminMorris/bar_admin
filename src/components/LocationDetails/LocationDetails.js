@@ -5,20 +5,21 @@ import Line from "../UI/Line/Line";
 import LocationDetailItems from "./LocationDetailItems/LocationDetailItems";
 import Button from "../UI/Button/Button";
 import Modal from "../UI/Modal/Modal";
-import Aux from '../../hoc/Aux/Aux';
+import Aux from "../../hoc/Aux/Aux";
 
 class LocationDetails extends Component {
-
   state = {
     locationDetails: null,
-  }
+  };
 
   componentDidUpdate(prevProps) {
-    prevProps.locationDetails !== this.props.locationDetails ? this.setState({locationDetails: this.props.locationDetails}) : null; 
+    prevProps.locationDetails !== this.props.locationDetails
+      ? this.setState({ locationDetails: this.props.locationDetails })
+      : null;
   }
 
   handleFieldUpdate = (e) => {
-    let tmpLocation = {...this.state.locationDetails};
+    let tmpLocation = { ...this.state.locationDetails };
     const fieldVal = e.target.value;
     const fieldTitle = e.target.title.toLowerCase();
     tmpLocation[fieldTitle] = fieldVal;
@@ -47,14 +48,39 @@ class LocationDetails extends Component {
           )}
         </div>
 
-        <Modal show={this.props.saving} modalClosed={this.props.savingCancelled}>
-          <p style={{ textAlign: "center" }}>Are you sure?</p>
-          <Button btnType={"Save"} clicked={() => this.props.save(this.state.locationDetails)}>
+        <Modal
+          show={this.props.saving}
+          modalClosed={this.props.savingCancelled}
+        >
+          <header>
+            <h2>Do you want to save?</h2>
+          </header>
+          <article className="content">
+            <p>Performing this action will update the database permanently if you chose to save.</p>
+          </article>
+          <footer>
+            <a
+              className={[classes.Button, classes.Success].join(" ")}
+              onClick={() => this.props.save(this.state.locationDetails)}
+            >
+              Save
+            </a>
+            <a
+              className={[classes.Button, classes.Danger].join(" ")}
+              onClick={this.props.savingCancelled}
+            >
+              Cancel
+            </a>
+          </footer>
+          {/* <Button
+            btnType={"Save"}
+            clicked={() => this.props.save(this.state.locationDetails)}
+          >
             Yes
           </Button>
           <Button btnType={"Edit"} clicked={this.props.savingCancelled}>
             Cancel
-          </Button>
+          </Button> */}
         </Modal>
 
         <Line classOverride="MainBody" />

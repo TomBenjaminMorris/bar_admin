@@ -18,3 +18,72 @@
   top: 0;
   right: 0;
 }
+
+
+/* Modal Styling */
+
+.LocationDetails header {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.LocationDetails header h2 {
+  font-family: Circular-Bold;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 26px;
+}
+
+.LocationDetails article {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  /* line-height: 1.75; */
+}
+
+.LocationDetails footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0 0;
+}
+
+.LocationDetails footer .Button {
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Circular-Bold;
+  color: white;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.LocationDetails footer .Button:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: width 250ms ease;
+  z-index: 0;
+}
+.LocationDetails footer .Button:hover:before {
+  width: 100%;
+}
+.LocationDetails footer .Button.Success {
+  margin-right: 5px;
+  background-color: #2ecc71;
+}
+.LocationDetails footer .Button.Danger {
+  background-color: #e74c3c;
+}
