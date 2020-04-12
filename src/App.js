@@ -8,7 +8,7 @@ class App extends Component {
 
   state = {
     locationDetails: null,
-    locationId: "ChIJSatihRtceUgRBykIV3V1uuU",
+    locationId: "ChIJR0dtzx1ceUgRRPpsmczf8SI",
   };
 
   componentDidMount() {

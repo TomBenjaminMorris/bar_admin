@@ -7,8 +7,8 @@ const navItems = ['Details', 'Deals', 'Photos', 'Help', 'Log Out'];
 
 const navigationItems = (props) => (
   <ul className={classes.NavigationItems}>
-    {navItems.map( item => {
-      return <NavigationItem link="/" navType={item}>{item}</NavigationItem>
+    {navItems.map( (item, i) => {
+      return <NavigationItem key={item + i} link="/" navType={item}>{item}</NavigationItem>
     })}
   </ul>
 );
