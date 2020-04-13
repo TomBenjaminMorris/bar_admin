@@ -5,20 +5,22 @@ import Line from "../UI/Line/Line";
 import LocationDetailItems from "./LocationDetailItems/LocationDetailItems";
 import Button from "../UI/Button/Button";
 import Modal from "../UI/Modal/Modal";
-import Aux from '../../hoc/Aux/Aux';
+import Aux from "../../hoc/Aux/Aux";
+import Dialogue from "../UI/Dialogue/Dialogue";
 
 class LocationDetails extends Component {
-
   state = {
     locationDetails: null,
-  }
+  };
 
   componentDidUpdate(prevProps) {
-    prevProps.locationDetails !== this.props.locationDetails ? this.setState({locationDetails: this.props.locationDetails}) : null; 
+    prevProps.locationDetails !== this.props.locationDetails
+      ? this.setState({ locationDetails: this.props.locationDetails })
+      : null;
   }
 
   handleFieldUpdate = (e) => {
-    let tmpLocation = {...this.state.locationDetails};
+    let tmpLocation = { ...this.state.locationDetails };
     const fieldVal = e.target.value;
     const fieldTitle = e.target.title.toLowerCase();
     tmpLocation[fieldTitle] = fieldVal;
@@ -33,37 +35,40 @@ class LocationDetails extends Component {
         <div className={classes.DetailsButton}>
           {this.props.editing ? (
             <Aux>
-              <Button btnType={"Save"} clicked={this.props.initialSave}>
+              <Button btnType={"Success"} clicked={this.props.initialSave}>
                 Save
               </Button>
-              <Button btnType={"Edit"} clicked={this.props.savingCancelled}>
+              <Button btnType={"Danger"} clicked={this.props.savingCancelled}>
                 Cancel
               </Button>
             </Aux>
           ) : (
-            <Button btnType={"Edit"} clicked={this.props.edit}>
+            <Button btnType={"Danger"} clicked={this.props.edit}>
               Edit
             </Button>
           )}
         </div>
 
-        <Modal show={this.props.saving} modalClosed={this.props.savingCancelled}>
-          <p style={{ textAlign: "center" }}>Are you sure?</p>
-          <Button btnType={"Save"} clicked={() => this.props.save(this.state.locationDetails)}>
-            Yes
-          </Button>
-          <Button btnType={"Edit"} clicked={this.props.savingCancelled}>
-            Cancel
-          </Button>
-        </Modal>
-
         <Line classOverride="MainBody" />
-
         <LocationDetailItems
           locationDetails={this.props.locationDetails}
           editing={this.props.editing}
           updateField={this.handleFieldUpdate}
         />
+
+        <Modal
+          show={this.props.saving}
+          modalClosed={this.props.savingCancelled}
+        >
+          <Dialogue
+            title="Do you want to save?"
+            confirm={() => this.props.save(this.state.locationDetails)}
+            cancel={this.props.savingCancelled}
+          >
+            Performing this action will update the database permanently if you
+            chose to save.
+          </Dialogue>
+        </Modal>
       </div>
     );
   }

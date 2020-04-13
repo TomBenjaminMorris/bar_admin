@@ -4,6 +4,7 @@
   flex-direction: row;
   justify-content: space-evenly; */
   /* flex: 40%; */
+  width: 100%;
 }
 
 .LocationDetailItem h2 {

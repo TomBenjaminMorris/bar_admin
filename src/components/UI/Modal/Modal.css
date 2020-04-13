@@ -4,14 +4,16 @@
   background-color: white;
   width: 70%;
   border: 1px solid #ccc;
-  padding: 20px;
+  padding: 30px;
   left: 15%;
   top: 30%;
   box-sizing: border-box;
-  transition: all 0.3s ease-out;
-  text-align: center;
   font-size: 22px;
-  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0);
+  transition: transform 100ms ease;
+  height: auto;
 }
 
 @media (min-width: 600px) {
