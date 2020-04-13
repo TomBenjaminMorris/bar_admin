@@ -27,7 +27,19 @@ const locationDetailItems = (props) => {
     });
   }
 
-  return <div className={classes.LocationDetailItems}>{locationItems}</div>;
+  return (
+    <div className={classes.LocationDetailItems}>
+      {locationItems}
+      Validated
+      <input
+        className={classes.Validated}
+        checked={props.validated}
+        disabled={!props.editing}
+        onClick={props.checkboxToggle}
+        type="checkbox"
+      />
+    </div>
+  );
 };
 
 export default locationDetailItems;

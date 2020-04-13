@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import Aux from "../../hoc/Aux/Aux";
 import classes from "./Layout.css";

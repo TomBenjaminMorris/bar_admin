@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import axios from 'axios';
+import axios from './axios-bars';
 
-axios.defaults.baseURL = 'https://hapihour.io/api';
 axios.get('/jwt')
   .then(response => {
     axios.defaults.headers.common['Authorization'] = 'jwt ' + response.data;
