@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from './axios-bars';
 
 import Layout from './containers/Layout/Layout';
 import AdminPane from './containers/AdminPane/AdminPane';

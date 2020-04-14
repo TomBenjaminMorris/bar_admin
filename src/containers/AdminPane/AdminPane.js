@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../../axios-bars";
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 class AdminPane extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class AdminPane extends Component {
       editing: false,
       saving: false,
       locationDetails: null,
+      loading: false,
     };
   }
 
@@ -30,28 +32,26 @@ class AdminPane extends Component {
   };
 
   handleSave = (locationToSave) => {
-    if (locationToSave !== this.state.locationDetails) {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
 
+    this.setState({loading: true});
+
+    if (locationToSave !== this.state.locationDetails) {
       axios
-        .put("/bar?place_id=" + locationToSave.place_id, locationToSave, config)
+        .put("/bar?place_id=" + locationToSave.place_id, locationToSave)
         .then((response) => {
           this.setState({
             editing: false,
             saving: false,
             locationDetails: locationToSave,
+            loading: false,
           });
         })
         .catch((error) => {
-          this.setState({ editing: false, saving: false });
+          this.setState({ editing: false, saving: false, loading: false });
           console.log("PUT FAILED: " + error);
         });
     } else {
-      this.setState({ editing: false, saving: false });
+      this.setState({ editing: false, saving: false, loading: false });
     }
   };
 
@@ -60,18 +60,20 @@ class AdminPane extends Component {
   };
 
   render() {
+    const mainContent = !this.state.locationDetails ? <Spinner /> : (
+      <LocationDetails
+        locationDetails={this.state.locationDetails}
+        edit={this.handleEditing}
+        initialSave={this.handleInitialSave}
+        save={this.handleSave}
+        editing={this.state.editing}
+        saving={this.state.saving}
+        savingCancelled={this.savingCancelledHandler}
+        loading={this.state.loading}
+      />
+    )
     return (
-      <div className={classes.AdminPane}>
-        <LocationDetails
-          locationDetails={this.state.locationDetails}
-          edit={this.handleEditing}
-          initialSave={this.handleInitialSave}
-          save={this.handleSave}
-          editing={this.state.editing}
-          saving={this.state.saving}
-          savingCancelled={this.savingCancelledHandler}
-        />
-      </div>
+      <div className={classes.AdminPane}>{mainContent}</div>
     );
   }
 }

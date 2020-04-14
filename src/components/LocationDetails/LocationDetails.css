@@ -18,3 +18,11 @@
   top: 0;
   right: 0;
 }
+
+.Edit {
+  height: 40px;
+}
+
+.Edit:hover {
+  height: 45px;
+}

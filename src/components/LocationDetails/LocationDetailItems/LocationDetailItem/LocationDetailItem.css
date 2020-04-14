@@ -22,12 +22,14 @@
   border-radius: 3px;
   box-shadow: 0 0 1px #b8b8b8;
   min-width: 100%;
+  border:1px solid #ffbc2c79;
+  box-shadow: 0 0 5px #ffbc2c9e;
 }
 
 .LocationDetailItem input:focus{
   outline: none !important;
   border:1px solid #ffbc2c;
-  box-shadow: 0 0 5px #ffbc2c;
+  box-shadow: 0 0 10px #ffaf04;
 }
 
 .Pill {
@@ -42,5 +44,5 @@
   text-align: center;
   display: inline-block;
   border-radius: 2px;
-  margin-top: 20px;
+  margin-top: 5px;
 }
