@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import axios from './axios-bars';
+import React, { Component } from "react";
+import axios from "./axios-bars";
 
-import Layout from './containers/Layout/Layout';
-import AdminPane from './containers/AdminPane/AdminPane';
+import Layout from "./containers/Layout/Layout";
+import AdminPane from "./containers/AdminPane/AdminPane";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
-
   state = {
     locationDetails: null,
-    locationId: "ChIJR0dtzx1ceUgRRPpsmczf8SI",
+    locationId: "ChIJx6u84B1ceUgRPvf7HyGrzWo",
   };
 
   componentDidMount() {
@@ -22,14 +22,13 @@ class App extends Component {
       });
   }
 
-  render () {
-
+  render() {
     return (
-      <div>
+      <BrowserRouter>
         <Layout locationDetails={this.state.locationDetails}>
-          <AdminPane locationDetails={this.state.locationDetails}/>
+          <AdminPane locationDetails={this.state.locationDetails} />
         </Layout>
-      </div>
+      </BrowserRouter>
     );
   }
 }

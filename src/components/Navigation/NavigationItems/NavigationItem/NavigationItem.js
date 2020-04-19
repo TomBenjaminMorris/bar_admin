@@ -6,6 +6,7 @@ import dealsIcon from "../../../../assets/icons/cocktail.png";
 import helpIcon from "../../../../assets/icons/help.png";
 import photosIcon from "../../../../assets/icons/image.png";
 import logOutIcon from "../../../../assets/icons/logout.png";
+import { Link } from "react-router-dom";
 
 const navigationItem = (props) => {
 
@@ -36,9 +37,11 @@ const navigationItem = (props) => {
       <div>
         <img src={finalIcon} />
       </div>
-      <a href={props.link} className={props.active ? classes.active : null}>
-        {props.children}
-      </a>
+      <Link to={props.link}>
+        <a href={props.link} className={props.active ? classes.active : null}>
+          {props.children}
+        </a>
+      </Link>
     </li>
   );
 };

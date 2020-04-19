@@ -4,6 +4,8 @@ import axios from "../../axios-bars";
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { Switch, Route } from "react-router-dom";
+import Deals from "../../components/Deals/Deals";
 
 class AdminPane extends Component {
   constructor(props) {
@@ -32,8 +34,7 @@ class AdminPane extends Component {
   };
 
   handleSave = (locationToSave) => {
-
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     if (locationToSave !== this.state.locationDetails) {
       axios
@@ -60,7 +61,7 @@ class AdminPane extends Component {
   };
 
   render() {
-    const mainContent = !this.state.locationDetails ? <Spinner /> : (
+    const LocationDetailsBlock = (
       <LocationDetails
         locationDetails={this.state.locationDetails}
         edit={this.handleEditing}
@@ -71,10 +72,27 @@ class AdminPane extends Component {
         savingCancelled={this.savingCancelledHandler}
         loading={this.state.loading}
       />
-    )
-    return (
-      <div className={classes.AdminPane}>{mainContent}</div>
     );
+
+    const DealsDetailsBlock = (
+      <Deals locationDetails={this.state.locationDetails}/>
+    );
+
+    const PhotosDetailsBlock = <div>PHOTOS</div>;
+
+    const HelpDetailsBlock = <div>HELP</div>;
+
+    const mainContent = !this.state.locationDetails ? (
+      <Spinner />
+    ) : (
+      <Switch>
+        <Route path="/deals" render={() => DealsDetailsBlock} />
+        <Route path="/details" render={() => LocationDetailsBlock} />
+        <Route path="/photos" render={() => PhotosDetailsBlock} />
+        <Route path="/help" render={() => HelpDetailsBlock} />
+      </Switch>
+    );
+    return <div className={classes.AdminPane}>{mainContent}</div>;
   }
 }
 
