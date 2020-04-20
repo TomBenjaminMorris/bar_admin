@@ -75,7 +75,12 @@ class AdminPane extends Component {
     );
 
     const DealsDetailsBlock = (
-      <Deals locationDetails={this.state.locationDetails}/>
+      <Deals
+        locationDetails={this.state.locationDetails}
+        edit={this.handleEditing}
+        editing={this.state.editing}
+        savingCancelled={this.savingCancelledHandler}
+      />
     );
 
     const PhotosDetailsBlock = <div>PHOTOS</div>;
@@ -86,10 +91,11 @@ class AdminPane extends Component {
       <Spinner />
     ) : (
       <Switch>
-        <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/details" render={() => LocationDetailsBlock} />
+        <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
+        <Route render={() => LocationDetailsBlock} />
       </Switch>
     );
     return <div className={classes.AdminPane}>{mainContent}</div>;
