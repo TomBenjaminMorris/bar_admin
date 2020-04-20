@@ -17,15 +17,14 @@ class Deals extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    prevProps.locationDetails !== this.props.locationDetails
+    prevProps !== this.props
       ? this.setState({ locationDetails: this.props.locationDetails })
       : null;
   }
 
   handleEditDeal = (index) => {
-    this.setState((prevState) => {
-      return { editingDeal: prevState.locationDetails.deals[index] };
-    });
+    const deal = {...this.state.locationDetails}.deals[index]
+    this.setState({ editingDeal: deal });
     this.props.edit();
   };
 
@@ -34,6 +33,11 @@ class Deals extends Component {
     this.props.savingCancelled();
     // this.props.save(this.state.locationDetails)
   };
+
+  handleSaveCancel = () => {
+    this.setState({ editingDeal: null });
+    this.props.savingCancelled();
+  }
 
   render() {
     const dealsArray = this.state.locationDetails.deals;
@@ -60,7 +64,7 @@ class Deals extends Component {
 
         <Modal
           show={this.props.editing}
-          modalClosed={this.props.savingCancelled}
+          modalClosed={this.handleSaveCancel}
         >
           {editingDeal}
         </Modal>

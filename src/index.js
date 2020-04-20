@@ -8,7 +8,6 @@ import axios from './axios-bars';
 axios.get('/jwt')
   .then(response => {
     axios.defaults.headers.common['Authorization'] = 'jwt ' + response.data;
-    console.log('Index request: ' + response.data);
     ReactDOM.render(<App />, document.getElementById('root'));
     registerServiceWorker();
   })
