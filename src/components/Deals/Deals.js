@@ -13,6 +13,7 @@ class Deals extends Component {
     this.state = {
       locationDetails: this.props.locationDetails,
       editingDeal: null,
+      dealIndex: null,
     };
   }
 
@@ -24,7 +25,7 @@ class Deals extends Component {
 
   handleEditDeal = (index) => {
     const deal = {...this.state.locationDetails}.deals[index]
-    this.setState({ editingDeal: deal });
+    this.setState({ editingDeal: deal, dealIndex: index });
     this.props.edit();
   };
 
@@ -43,7 +44,7 @@ class Deals extends Component {
     const dealsArray = this.state.locationDetails.deals;
     const editingDeal = ( this.state.editingDeal &&
       <EditingDeal
-        title="Edit Deal"
+        title={"Edit Deal " + this.state.dealIndex}
         deal={this.state.editingDeal}
         confirm={this.handleSaveDeal}
         cancel={this.props.savingCancelled}
