@@ -57,7 +57,7 @@ class Deals extends Component {
         {dealsArray.map((deal, i) => {
           return (
             <div>
-              <h2>Deal {i}</h2>
+              <h3>Deal {i}</h3>
               <Deal deal={deal} editDeal={() => this.handleEditDeal(i)} />
             </div>
           );

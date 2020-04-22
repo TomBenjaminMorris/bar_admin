@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import classes from "./EditingDeal.css";
 import Button from "../../UI/Button/Button";
 import WeekDays from "../Deal/WeekDays/WeekDays";
-import plus_icon from '../../../assets/icons/plus.png';
 
 class EditingDeal extends Component {
 
@@ -52,7 +51,7 @@ class EditingDeal extends Component {
           <input type="time" defaultValue={endTime} /><br/>
         </div>
 
-        <h3>Deals</h3>
+        <h3>Details</h3>
         {description.map((item, i) => {
           return (
             <div className={classes.Deals}>
@@ -63,12 +62,12 @@ class EditingDeal extends Component {
                 onChange={this.handleChangeText}
               />
               {/* <button id={i} onClick={this.handleRemoveDealItem}>x</button> */}
-              <a href="#" className={classes.Close}id={i} onClick={this.handleRemoveDealItem}></a>
+              <a className={classes.Close}id={i} onClick={this.handleRemoveDealItem}></a>
               <br/>
             </div>
           );
         })}
-        <img className={classes.AddDeal} src={plus_icon} onClick={this.handleAddDeal}/>
+        <button className={classes.AddDeal} onClick={this.handleAddDeal}>+</button>
         {/* {JSON.stringify(this.props.deal)} */}
 
         <footer>

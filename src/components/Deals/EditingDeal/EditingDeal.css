@@ -54,6 +54,8 @@
 }
 
 .Deals input {
+  font-family: Circular;
+  font-size: 16px;
   width: 85%;
   padding: 6px;
   margin: 5px;
@@ -69,13 +71,21 @@
 }
 
 .AddDeal {
-  width: 25px;
+  background-color: white;
+  border: none;
+  font-size: 35px;
+  /* width: 18px; */
   padding: 5px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .AddDeal:hover {
-  width: 28px;
+  color: #ffaf04;
+  cursor: pointer;
+}
+
+.AddDeal:focus {
+  outline: none;
 }
 
 /* Close Button Styling */
@@ -87,7 +97,7 @@
   width: 25px;
   height: 25px;
   opacity: 0.4;
-  margin-top: 5px;
+  margin-top: 12px;
 }
 .Close:hover {
   opacity: 1;

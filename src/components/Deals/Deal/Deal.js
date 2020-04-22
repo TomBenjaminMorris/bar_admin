@@ -11,7 +11,6 @@ const deal = (props) => {
 
   return (
     <div className={classes.Deal}>
-      {/* <button className={classes.Edit}>EDIT</button> */}
       <img src={edit_icon} className={classes.Edit} onClick={props.editDeal} />
       <div className={classes.Days}>{weekDayFinal}</div>
       <div className={classes.Time}>
