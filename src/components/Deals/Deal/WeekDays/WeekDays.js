@@ -28,7 +28,6 @@ class WeekDays extends Component {
       weekDays.includes(day.id) ? day.isChecked = true : null;
       return day;
     })
-    console.log(dayArray);
 
     return dayArray;
   }
@@ -45,6 +44,7 @@ class WeekDays extends Component {
       if (day.value === event.target.value)
         day.isChecked = event.target.checked;
     });
+    this.props.updated(weekDays);
     this.setState({ weekDays: weekDays });
   };
 

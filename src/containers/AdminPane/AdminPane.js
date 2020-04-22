@@ -78,8 +78,10 @@ class AdminPane extends Component {
       <Deals
         locationDetails={this.state.locationDetails}
         edit={this.handleEditing}
+        save={this.handleSave}
         editing={this.state.editing}
         savingCancelled={this.savingCancelledHandler}
+        loading={this.state.loading}
       />
     );
 

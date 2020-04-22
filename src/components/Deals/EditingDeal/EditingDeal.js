@@ -37,6 +37,39 @@ class EditingDeal extends Component {
     this.setState({ description: description });
   }
 
+  returnDeal = () => {
+    let tmpDeal = {...this.props.deal};
+    tmpDeal.startTime = this.state.startTime;
+    tmpDeal.endTime = this.state.endTime;
+    tmpDeal.description = this.state.description;
+    tmpDeal.weekDays = this.state.weekDays;
+    this.props.confirm(tmpDeal);
+  }
+
+  handleWeekdayChange = (weekDaysArray) => {
+    const tmpWeekDayArray = []
+    weekDaysArray.map(day => {
+      return day.isChecked ? tmpWeekDayArray.push(day.id) : null;
+    });
+    this.setState({weekDays: tmpWeekDayArray.sort()});
+  }
+
+  handleStartTimeChange = (e) => {
+    const value = e.target.value;
+    let startTime = [...this.state.startTime];
+    startTime = value;
+    this.setState({ startTime: startTime });
+  };
+
+  handleEndTimeChange = (e) => {
+    const value = e.target.value;
+    let endTime = [...this.state.endTime];
+    endTime = value;
+    this.setState({ endTime: endTime });
+  };
+
+  //handle start and end time change
+
   render() {
     const { startTime, endTime, description, weekDays } = this.state;
     return (
@@ -45,10 +78,10 @@ class EditingDeal extends Component {
           <h2>{this.props.title}</h2>
         </header>
 
-        <WeekDays weekDays={weekDays}/>
+        <WeekDays weekDays={weekDays} updated={this.handleWeekdayChange}/>
         <div className={classes.Times}>
-          <input type="time" defaultValue={startTime} />-
-          <input type="time" defaultValue={endTime} /><br/>
+          <input type="time" defaultValue={startTime} onChange={this.handleStartTimeChange} />-
+          <input type="time" defaultValue={endTime} onChange={this.handleEndTimeChange} /><br/>
         </div>
 
         <h3>Details</h3>
@@ -61,7 +94,6 @@ class EditingDeal extends Component {
                 value={item}
                 onChange={this.handleChangeText}
               />
-              {/* <button id={i} onClick={this.handleRemoveDealItem}>x</button> */}
               <a className={classes.Close}id={i} onClick={this.handleRemoveDealItem}></a>
               <br/>
             </div>
@@ -71,7 +103,7 @@ class EditingDeal extends Component {
         {/* {JSON.stringify(this.props.deal)} */}
 
         <footer>
-          <Button btnType={"Success"} clicked={this.props.confirm}>
+          <Button btnType={"Success"} clicked={this.returnDeal}>
             Save
           </Button>
           <Button btnType={"Danger"} clicked={this.props.cancel}>

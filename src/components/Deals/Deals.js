@@ -5,6 +5,7 @@ import Line from "../UI/Line/Line";
 import Deal from "./Deal/Deal";
 import Modal from "../UI/Modal/Modal";
 import EditingDeal from "./EditingDeal/EditingDeal";
+import Spinner from "../UI/Spinner/Spinner";
 
 class Deals extends Component {
   constructor(props) {
@@ -30,9 +31,14 @@ class Deals extends Component {
   };
 
   handleSaveDeal = (deal) => {
-    console.log('saving deal');
+    // console.log('saving deal: ', deal);
+    this.setState({editingDeal: deal});
+    const finalLocation = {...this.state.locationDetails};
+    // console.log('finalLocation: ', finalLocation);
+    finalLocation.deals[this.state.dealIndex] = deal;
+    // console.log('finalLocation: ', finalLocation);
     this.props.savingCancelled();
-    // this.props.save(this.state.locationDetails)
+    this.props.save(finalLocation)
   };
 
   handleSaveCancel = () => {
@@ -67,7 +73,7 @@ class Deals extends Component {
           show={this.props.editing}
           modalClosed={this.handleSaveCancel}
         >
-          {editingDeal}
+          {this.props.loading ? <Spinner/> : editingDeal}
         </Modal>
       </div>
     );

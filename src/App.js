@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 class App extends Component {
   state = {
     locationDetails: null,
-    locationId: "ChIJx6u84B1ceUgRPvf7HyGrzWo",
+    locationId: "ChIJR0dtzx1ceUgRRPpsmczf8SI",
   };
 
   componentDidMount() {
