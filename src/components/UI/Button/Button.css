@@ -1,36 +1,6 @@
-/* .Button {
-  border: none;
-  color: whitesmoke;
-  outline: none;
-  cursor: pointer;
-  font-size: 25px;
-  padding: 8px 15px;
-  margin-top: 10px;
-  margin-right: 10px;
-  font-weight: bold;
-  min-width: 90px;
-}
-
-.Save {
-  background-color: #5C9210;
-}
-
-.Save:hover {
-  background-color: rgb(128, 196, 33);
-}
-
-.Edit {
-  background-color: #c15f2b;
-}
-
-.Edit:hover {
-  background-color: #e97b40;
-} */
-
-
 .Button {
   position: relative;
-  padding: 10px 30px;
+  padding: 10px 15px;
   border-radius: 3px;
   font-size: 14px;
   font-weight: 400;
@@ -61,4 +31,10 @@
 }
 .Danger {
   background-color: #e74c3c;
+}
+.Add {
+  background-color: #877f73e9;
+}
+.Add:hover {
+  background-color: rgb(193, 132, 67);
 }

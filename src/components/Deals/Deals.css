@@ -10,3 +10,8 @@
   font-family: Circular-bold;
   margin: auto;
 }
+
+.AddDealButton {
+  float: right;
+  margin-top: 50px;
+}

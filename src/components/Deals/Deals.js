@@ -6,6 +6,7 @@ import Deal from "./Deal/Deal";
 import Modal from "../UI/Modal/Modal";
 import EditingDeal from "./EditingDeal/EditingDeal";
 import Spinner from "../UI/Spinner/Spinner";
+import Button from "../UI/Button/Button";
 
 class Deals extends Component {
   constructor(props) {
@@ -26,40 +27,58 @@ class Deals extends Component {
   }
 
   handleEditDeal = (index) => {
-    const deal = {...this.state.locationDetails}.deals[index]
+    const deal = { ...this.state.locationDetails }.deals[index];
     this.setState({ editingDeal: deal, dealIndex: index, newDeal: false });
     this.props.edit();
   };
 
+  handleRemoveDeal = (index) => {
+    const tmpLocationDeals = { ...this.state.locationDetails };
+    tmpLocationDeals.deals.splice(index, 1);
+    const result = window.confirm("Are you sure you want to delete?");
+    result ? this.setState({ locationDetails: tmpLocationDeals }) : null;
+    this.props.save(tmpLocationDeals);
+  };
+
   handleSaveDeal = (deal) => {
     // console.log('saving deal: ', deal);
-    this.setState({editingDeal: deal});
-    const finalLocation = {...this.state.locationDetails};
+    const finalLocation = { ...this.state.locationDetails };
     // console.log('finalLocation: ', finalLocation);
-    finalLocation.deals[this.state.dealIndex] = deal;
+    this.state.newDeal
+      ? finalLocation.deals.push(deal)
+      : (finalLocation.deals[this.state.dealIndex] = deal);
     // console.log('finalLocation: ', finalLocation);
-    this.props.savingCancelled();
     this.props.save(finalLocation)
+    this.setState({
+      editingDeal: null,
+      newDeal: false,
+      locationDetails: finalLocation,
+    });
+    // this.props.savingCancelled();
   };
 
   handleSaveCancel = () => {
     this.setState({ editingDeal: null, newDeal: false });
     this.props.savingCancelled();
-  }
+  };
 
   handleNewDeal = () => {
-    this.setState({newDeal: true});
+    this.setState({ newDeal: true });
     this.props.edit();
-  }
+  };
 
   render() {
     const dealsArray = this.state.locationDetails.deals;
-    const editingDeal = ( (this.state.editingDeal || this.state.newDeal) &&
+    const editingDeal = (this.state.editingDeal || this.state.newDeal) && (
       <EditingDeal
-        title={this.state.newDeal ? "Add New Deal" : "Edit Deal " + this.state.dealIndex}
+        title={
+          this.state.newDeal
+            ? "Add New Deal"
+            : "Edit Deal " + this.state.dealIndex
+        }
         deal={this.state.editingDeal}
         confirm={this.handleSaveDeal}
-        cancel={this.props.savingCancelled}
+        cancel={this.handleSaveCancel}
         newDeal={this.state.newDeal}
       />
     );
@@ -70,19 +89,24 @@ class Deals extends Component {
         {dealsArray.map((deal, i) => {
           return (
             <div>
-              <h3>Deal {i}</h3>
-              <Deal deal={deal} editDeal={() => this.handleEditDeal(i)} />
+              {/* <h3>Deal {i}</h3> */}
+              <Deal
+                deal={deal}
+                editDeal={() => this.handleEditDeal(i)}
+                removeDeal={() => this.handleRemoveDeal(i)}
+              />
             </div>
           );
         })}
 
-        <button onClick={this.handleNewDeal}>Add New Deal</button>
+        <div className={classes.AddDealButton}>
+          <Button btnType={"Add"} clicked={this.handleNewDeal}>
+            Add New Deal
+          </Button>
+        </div>
 
-        <Modal
-          show={this.props.editing}
-          modalClosed={this.handleSaveCancel}
-        >
-          {this.props.loading ? <Spinner/> : editingDeal}
+        <Modal show={this.props.editing} modalClosed={this.handleSaveCancel}>
+          {this.props.loading ? <Spinner /> : editingDeal}
         </Modal>
       </div>
     );
