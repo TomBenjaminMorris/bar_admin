@@ -15,6 +15,7 @@ class Deals extends Component {
       locationDetails: this.props.locationDetails,
       editingDeal: null,
       dealIndex: null,
+      newDeal: false,
     };
   }
 
@@ -26,7 +27,7 @@ class Deals extends Component {
 
   handleEditDeal = (index) => {
     const deal = {...this.state.locationDetails}.deals[index]
-    this.setState({ editingDeal: deal, dealIndex: index });
+    this.setState({ editingDeal: deal, dealIndex: index, newDeal: false });
     this.props.edit();
   };
 
@@ -42,18 +43,24 @@ class Deals extends Component {
   };
 
   handleSaveCancel = () => {
-    this.setState({ editingDeal: null });
+    this.setState({ editingDeal: null, newDeal: false });
     this.props.savingCancelled();
+  }
+
+  handleNewDeal = () => {
+    this.setState({newDeal: true});
+    this.props.edit();
   }
 
   render() {
     const dealsArray = this.state.locationDetails.deals;
-    const editingDeal = ( this.state.editingDeal &&
+    const editingDeal = ( (this.state.editingDeal || this.state.newDeal) &&
       <EditingDeal
-        title={"Edit Deal " + this.state.dealIndex}
+        title={this.state.newDeal ? "Add New Deal" : "Edit Deal " + this.state.dealIndex}
         deal={this.state.editingDeal}
         confirm={this.handleSaveDeal}
         cancel={this.props.savingCancelled}
+        newDeal={this.state.newDeal}
       />
     );
     return (
@@ -68,6 +75,8 @@ class Deals extends Component {
             </div>
           );
         })}
+
+        <button onClick={this.handleNewDeal}>Add New Deal</button>
 
         <Modal
           show={this.props.editing}

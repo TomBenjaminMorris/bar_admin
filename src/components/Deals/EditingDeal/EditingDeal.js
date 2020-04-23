@@ -5,14 +5,14 @@ import Button from "../../UI/Button/Button";
 import WeekDays from "../Deal/WeekDays/WeekDays";
 
 class EditingDeal extends Component {
-
   constructor(props) {
     super(props);
+    const newDeal = this.props.newDeal;
     this.state = {
-      weekDays: this.props.deal.weekDays,
-      description: this.props.deal.description,
-      endTime: this.props.deal.endTime,
-      startTime: this.props.deal.startTime,
+      weekDays: newDeal ? [] : this.props.deal.weekDays,
+      description: newDeal ? [""] : this.props.deal.description,
+      endTime: newDeal ? "00:00" : this.props.deal.endTime,
+      startTime: newDeal ? "00:00" : this.props.deal.startTime,
     };
   }
 
@@ -31,28 +31,28 @@ class EditingDeal extends Component {
   };
 
   handleRemoveDealItem = (e) => {
-    const index = e.target.id
+    const index = e.target.id;
     let description = [...this.state.description];
     description.splice(index, 1);
     this.setState({ description: description });
-  }
+  };
 
   returnDeal = () => {
-    let tmpDeal = {...this.props.deal};
+    let tmpDeal = { ...this.props.deal };
     tmpDeal.startTime = this.state.startTime;
     tmpDeal.endTime = this.state.endTime;
     tmpDeal.description = this.state.description;
     tmpDeal.weekDays = this.state.weekDays;
     this.props.confirm(tmpDeal);
-  }
+  };
 
   handleWeekdayChange = (weekDaysArray) => {
-    const tmpWeekDayArray = []
-    weekDaysArray.map(day => {
+    const tmpWeekDayArray = [];
+    weekDaysArray.map((day) => {
       return day.isChecked ? tmpWeekDayArray.push(day.id) : null;
     });
-    this.setState({weekDays: tmpWeekDayArray.sort()});
-  }
+    this.setState({ weekDays: tmpWeekDayArray.sort() });
+  };
 
   handleStartTimeChange = (e) => {
     const value = e.target.value;
@@ -78,28 +78,45 @@ class EditingDeal extends Component {
           <h2>{this.props.title}</h2>
         </header>
 
-        <WeekDays weekDays={weekDays} updated={this.handleWeekdayChange}/>
+        <WeekDays weekDays={weekDays} updated={this.handleWeekdayChange} />
         <div className={classes.Times}>
-          <input type="time" defaultValue={startTime} onChange={this.handleStartTimeChange} />-
-          <input type="time" defaultValue={endTime} onChange={this.handleEndTimeChange} /><br/>
+          <input
+            type="time"
+            defaultValue={startTime}
+            onChange={this.handleStartTimeChange}
+          />
+          -
+          <input
+            type="time"
+            defaultValue={endTime}
+            onChange={this.handleEndTimeChange}
+          />
+          <br />
         </div>
 
         <h3>Details</h3>
-        {description.map((item, i) => {
-          return (
-            <div className={classes.Deals}>
-              <input
-                id={i}
-                type="text"
-                value={item}
-                onChange={this.handleChangeText}
-              />
-              <a className={classes.Close}id={i} onClick={this.handleRemoveDealItem}></a>
-              <br/>
-            </div>
-          );
-        })}
-        <button className={classes.AddDeal} onClick={this.handleAddDeal}>+</button>
+        {description &&
+          description.map((item, i) => {
+            return (
+              <div className={classes.Deals}>
+                <input
+                  id={i}
+                  type="text"
+                  value={item}
+                  onChange={this.handleChangeText}
+                />
+                <a
+                  className={classes.Close}
+                  id={i}
+                  onClick={this.handleRemoveDealItem}
+                ></a>
+                <br />
+              </div>
+            );
+          })}
+        <button className={classes.AddDeal} onClick={this.handleAddDeal}>
+          +
+        </button>
         {/* {JSON.stringify(this.props.deal)} */}
 
         <footer>
