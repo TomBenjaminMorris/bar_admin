@@ -6,12 +6,16 @@ import dealsIcon from "../../../../assets/icons/cocktail.png";
 import helpIcon from "../../../../assets/icons/help.png";
 import photosIcon from "../../../../assets/icons/image.png";
 import logOutIcon from "../../../../assets/icons/logout.png";
+import adminIcon from "../../../../assets/icons/admin.png";
 import { NavLink } from "react-router-dom";
 
 const navigationItem = (props) => {
   let finalIcon = "";
 
   switch (props.navType) {
+    case "Admin":
+      finalIcon = adminIcon;
+      break;
     case "Details":
       finalIcon = locationIcon;
       break;
