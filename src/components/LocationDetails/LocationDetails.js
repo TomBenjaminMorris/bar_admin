@@ -45,6 +45,14 @@ class LocationDetails extends Component {
     });
   };
 
+  handleCancel = () => {
+    this.setState({
+      locationDetails: this.props.locationDetails,
+      locationValidated: this.props.locationDetails.validated,
+    });
+    this.props.savingCancelled();
+  }
+
   render() {
     let modalContent = <Spinner />;
 
@@ -53,7 +61,7 @@ class LocationDetails extends Component {
         <Dialogue
           title="Do you want to save?"
           confirm={() => this.props.save(this.state.locationDetails)}
-          cancel={this.props.savingCancelled}
+          cancel={this.handleCancel}
         >
           Performing this action will update the database permanently if you
           chose to save.
@@ -73,7 +81,7 @@ class LocationDetails extends Component {
                   Save
                 </Button>
               )}
-              <Button btnType={"Danger"} clicked={this.props.savingCancelled}>
+              <Button btnType={"Danger"} clicked={this.handleCancel}>
                 Cancel
               </Button>
             </Aux>
@@ -89,7 +97,7 @@ class LocationDetails extends Component {
         <Line classOverride="MainBody" />
 
         <LocationDetailItems
-          locationDetails={this.props.locationDetails}
+          locationDetails={this.state.locationDetails}
           editing={this.props.editing}
           updateField={this.handleFieldUpdate}
           validated={
@@ -102,7 +110,7 @@ class LocationDetails extends Component {
 
         <Modal
           show={this.props.saving}
-          modalClosed={this.state.savingCancelled}
+          modalClosed={this.handleCancel}
         >
           {modalContent}
         </Modal>

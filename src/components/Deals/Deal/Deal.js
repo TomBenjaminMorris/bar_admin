@@ -3,6 +3,9 @@ import classes from "./Deal.css";
 
 import edit_icon from '../../../assets/icons/edit.png';
 import delete_icon from '../../../assets/icons/trash.png';
+import time_icon from '../../../assets/icons/clock.png';
+import calendar_icon from '../../../assets/icons/calendar.png';
+
 
 const deal = (props) => {
   const { endTime, startTime, description, weekDays } = props.deal;
@@ -14,7 +17,9 @@ const deal = (props) => {
     <div className={classes.Deal}>
       <img src={edit_icon} className={classes.Edit} onClick={props.editDeal} />
       <img src={delete_icon} className={classes.Delete} onClick={props.removeDeal} />
+      <img className={classes.CalendarIcon} src={calendar_icon} />
       <div className={classes.Days}>{weekDayFinal}</div>
+      <img className={classes.TimeIcon} src={time_icon} />
       <div className={classes.Time}>
         {startTime} - {endTime}
       </div>

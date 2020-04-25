@@ -26,10 +26,10 @@ class Layout extends Component {
     return (
       <Aux>
         <Toolbar drawToggleClicked={this.sideDrawerToggleHandler} />
-        {this.props.locationDetails && (
+        {(
           <SideToolbar
             locationDetails={this.props.locationDetails}
-            userName={this.props.locationDetails.name}
+            userName={this.props.locationDetails}
           />
         )}
         <SideDrawer

@@ -8,8 +8,26 @@
   text-align: center;
   display: inline-block;
   border-radius: 2px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-size: 16px;
+}
+
+.TimeIcon {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 7px;
+  width: 22px;
+  position: relative;
+  top: 5px;
+}
+
+.CalendarIcon {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 22px;
+  position: relative;
+  top: 5px;
 }
 
 .Days {

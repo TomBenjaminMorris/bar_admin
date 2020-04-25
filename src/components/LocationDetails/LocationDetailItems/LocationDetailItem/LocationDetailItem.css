@@ -21,7 +21,7 @@
   border: white solid 1px;
   border-radius: 3px;
   box-shadow: 0 0 1px #b8b8b8;
-  min-width: 100%;
+  min-width: 90%;
   border:1px solid #ffbc2c79;
   box-shadow: 0 0 5px #ffbc2c9e;
 }
@@ -45,4 +45,5 @@
   display: inline-block;
   border-radius: 2px;
   margin-top: 5px;
+  margin-top: 20px;
 }

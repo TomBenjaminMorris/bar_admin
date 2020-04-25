@@ -33,11 +33,13 @@ class Deals extends Component {
   };
 
   handleRemoveDeal = (index) => {
-    const tmpLocationDeals = { ...this.state.locationDetails };
-    tmpLocationDeals.deals.splice(index, 1);
     const result = window.confirm("Are you sure you want to delete?");
-    result ? this.setState({ locationDetails: tmpLocationDeals }) : null;
-    this.props.save(tmpLocationDeals);
+    if (result) {
+      const tmpLocationDeals = { ...this.state.locationDetails };
+      tmpLocationDeals.deals.splice(index, 1);
+      this.setState({ locationDetails: tmpLocationDeals });
+      this.props.save(tmpLocationDeals);
+    }
   };
 
   handleSaveDeal = (deal) => {
