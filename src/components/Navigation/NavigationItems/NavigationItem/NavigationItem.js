@@ -6,29 +6,29 @@ import dealsIcon from "../../../../assets/icons/cocktail.png";
 import helpIcon from "../../../../assets/icons/help.png";
 import photosIcon from "../../../../assets/icons/image.png";
 import logOutIcon from "../../../../assets/icons/logout.png";
+import { NavLink } from "react-router-dom";
 
 const navigationItem = (props) => {
+  let finalIcon = "";
 
-  let finalIcon = '';
-  
-  switch(props.navType) {
-    case 'Details':
+  switch (props.navType) {
+    case "Details":
       finalIcon = locationIcon;
       break;
-    case 'Deals':
+    case "Deals":
       finalIcon = dealsIcon;
       break;
-    case 'Help':
+    case "Help":
       finalIcon = helpIcon;
       break;
-    case 'Photos':
+    case "Photos":
       finalIcon = photosIcon;
       break;
-    case 'Log Out':
+    case "Log Out":
       finalIcon = logOutIcon;
       break;
     default:
-      // code block
+    // code block
   }
 
   return (
@@ -36,9 +36,14 @@ const navigationItem = (props) => {
       <div>
         <img src={finalIcon} />
       </div>
-      <a href={props.link} className={props.active ? classes.active : null}>
+      <NavLink
+        to={props.link}
+        activeStyle={{
+          color: "rgb(238, 128, 31)",
+        }}
+      >
         {props.children}
-      </a>
+      </NavLink>
     </li>
   );
 };

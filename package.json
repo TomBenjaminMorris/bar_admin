@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "abbrev-weekday-range": "^1.0.0",
     "autoprefixer": "7.1.2",
     "axios": "^0.19.2",
     "babel-core": "6.25.0",
@@ -35,6 +36,7 @@
     "react": "^16.0.0",
     "react-dev-utils": "^4.2.3",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",

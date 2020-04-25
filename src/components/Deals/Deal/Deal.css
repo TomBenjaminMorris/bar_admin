@@ -1,0 +1,105 @@
+.Time {
+  font-family: Circular-bold;
+  padding-bottom: 10px;
+  border: none;
+  background-color: rgba(221, 221, 221, 0.966);
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 2px;
+  /* margin-left: 10px; */
+  font-size: 16px;
+}
+
+.TimeIcon {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 7px;
+  width: 22px;
+  position: relative;
+  top: 5px;
+}
+
+.CalendarIcon {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 22px;
+  position: relative;
+  top: 5px;
+}
+
+.Days {
+  font-family: Circular-bold;
+  padding-bottom: 10px;
+  border: none;
+  background-color: #f4b42c;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 2px;
+  font-size: 16px;
+  font-family: Circular-bold;
+}
+
+.DealItem {
+  color: rgb(72, 72, 72);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.Deal {
+  color: rgb(72, 72, 72);
+  padding-top: 20px;
+  /* border-top: 1px solid rgb(202, 202, 202); */
+  margin-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.Edit {
+  position: absolute;
+  top: 15px;
+  right: 55px; 
+  width: 30px;
+}
+
+.Edit:hover {
+  width: 35px;
+}
+
+.Delete {
+  position: absolute;
+  top: 17px;
+  right: 5px; 
+  width: 30px;
+  height: 29px;
+
+}
+
+.Delete:hover {
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (max-width: 700px) {
+  .Deal {
+    padding-top: 10px;
+  }
+  .Time {
+    font-size: 12px;
+  }
+  .Days {
+    font-size: 12px;
+  }
+  .DealItem {
+    font-size: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}

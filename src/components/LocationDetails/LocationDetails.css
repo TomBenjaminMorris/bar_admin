@@ -3,6 +3,7 @@
   padding: 20px;
   max-width: 1000px;
   margin: auto;
+  position: relative;
 }
 
 .LocationDetails h1 {
@@ -13,16 +14,16 @@
 
 .DetailsButton {
   position: absolute;
-  margin-top: 90px;
+  margin-top: 85px;
   margin-right: 30px;
-  top: 0;
+  top: 0px;
   right: 0;
 }
 
 .Edit {
-  height: 40px;
+  width: 30px;
 }
 
 .Edit:hover {
-  height: 45px;
+  width: 35px;
 }
