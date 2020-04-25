@@ -12,18 +12,23 @@
   margin: auto;
 }
 
-.DetailsButton {
+.EditButton {
   position: absolute;
   margin-top: 85px;
   margin-right: 30px;
-  top: 0px;
-  right: 0;
+  top: 30px;
+  right: 10px;
 }
 
 .Edit {
-  width: 30px;
+  width: 26px;
 }
 
 .Edit:hover {
-  width: 35px;
+  width: 30px;
+}
+
+.SaveCancelButtons {
+  float: right;
+  margin-top: 20px;
 }
