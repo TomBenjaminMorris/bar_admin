@@ -19,7 +19,7 @@ const locationDetailItems = (props) => {
       type: "text",
     },
     validated: {
-      name: "Validated",
+      name: "Displayed",
       type: "checkbox",
     },
   };

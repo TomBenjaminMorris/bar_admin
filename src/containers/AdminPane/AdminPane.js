@@ -6,6 +6,7 @@ import LocationDetails from "../../components/LocationDetails/LocationDetails";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
+import SuperUser from "../../components/SuperUser/SuperUser";
 
 class AdminPane extends Component {
   constructor(props) {
@@ -85,6 +86,10 @@ class AdminPane extends Component {
       />
     );
 
+    const SuperUserBlock = (
+      <SuperUser locationIdUpdate={this.props.locationIdUpdate} />
+    );
+
     const PhotosDetailsBlock = <div>PHOTOS</div>;
 
     const HelpDetailsBlock = <div>HELP</div>;
@@ -93,6 +98,7 @@ class AdminPane extends Component {
       <Spinner />
     ) : (
       <Switch>
+        <Route path="/admin" render={() => SuperUserBlock} />
         <Route path="/details" render={() => LocationDetailsBlock} />
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />

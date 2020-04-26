@@ -21,12 +21,24 @@ class App extends Component {
         console.log("Index error: " + error);
       });
   }
+  
+  handleLocationIDUpdate = (id) => {
+    this.setState({locationId: id});
+    axios
+      .get("/bar", { params: { place_id: id } })
+      .then((response) => {
+        this.setState({ locationDetails: response.data });
+      })
+      .catch((error) => {
+        console.log("Index error: " + error);
+      });
+  }
 
   render() {
     return (
       <BrowserRouter>
         <Layout locationDetails={this.state.locationDetails}>
-          <AdminPane locationDetails={this.state.locationDetails} />
+          <AdminPane locationDetails={this.state.locationDetails} locationIdUpdate={this.handleLocationIDUpdate} />
         </Layout>
       </BrowserRouter>
     );

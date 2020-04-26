@@ -5,7 +5,6 @@ import Line from "../UI/Line/Line";
 import LocationDetailItems from "./LocationDetailItems/LocationDetailItems";
 import Button from "../UI/Button/Button";
 import Modal from "../UI/Modal/Modal";
-import Aux from "../../hoc/Aux/Aux";
 import Dialogue from "../UI/Dialogue/Dialogue";
 import Spinner from "../UI/Spinner/Spinner";
 import edit_icon from "../../assets/icons/edit.png";
@@ -51,7 +50,7 @@ class LocationDetails extends Component {
       locationValidated: this.props.locationDetails.validated,
     });
     this.props.savingCancelled();
-  }
+  };
 
   render() {
     let modalContent = <Spinner />;
@@ -73,26 +72,15 @@ class LocationDetails extends Component {
       <div className={classes.LocationDetails}>
         <h1>Location Details</h1>
 
-        <div className={classes.DetailsButton}>
-          {this.props.editing ? (
-            <Aux>
-              {this.state.showSave && (
-                <Button btnType={"Success"} clicked={this.props.initialSave}>
-                  Save
-                </Button>
-              )}
-              <Button btnType={"Danger"} clicked={this.handleCancel}>
-                Cancel
-              </Button>
-            </Aux>
-          ) : (
+        {!this.props.editing ? (
+          <div className={classes.EditButton}>
             <img
               src={edit_icon}
               className={classes.Edit}
               onClick={this.props.edit}
             />
-          )}
-        </div>
+          </div>
+        ) : null}
 
         <Line classOverride="MainBody" />
 
@@ -108,10 +96,20 @@ class LocationDetails extends Component {
           checkboxToggle={this.handleCheckboxToggle}
         />
 
-        <Modal
-          show={this.props.saving}
-          modalClosed={this.handleCancel}
-        >
+        {this.props.editing ? (
+          <div className={classes.SaveCancelButtons}>
+            {this.state.showSave && (
+              <Button btnType={"Success"} clicked={this.props.initialSave}>
+                Save
+              </Button>
+            )}
+            <Button btnType={"Danger"} clicked={this.handleCancel}>
+              Cancel
+            </Button>
+          </div>
+        ) : null}
+
+        <Modal show={this.props.saving} modalClosed={this.handleCancel}>
           {modalContent}
         </Modal>
       </div>
