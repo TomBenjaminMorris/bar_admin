@@ -22,10 +22,13 @@
 
 .Edit {
   width: 26px;
+  padding: 6px;
+  border-radius: 10px;
+  transition: ease 0.5s;
 }
 
 .Edit:hover {
-  width: 30px;
+  background-color: rgba(148, 208, 122, 0.879);
 }
 
 .SaveCancelButtons {
