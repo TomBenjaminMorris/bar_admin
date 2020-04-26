@@ -1,7 +1,7 @@
 .LocationDetailItems {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
   flex-wrap: wrap;
   background-color: rgb(242, 242, 242);
   padding: 15px;
