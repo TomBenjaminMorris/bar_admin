@@ -17,7 +17,12 @@ class Deals extends Component {
       editingDeal: null,
       dealIndex: null,
       newDeal: false,
+      errorMessage: "",
     };
+  }
+
+  componentDidMount() {
+    this.props.savingCancelled();
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +33,7 @@ class Deals extends Component {
 
   handleEditDeal = (index) => {
     const deal = { ...this.state.locationDetails }.deals[index];
-    this.setState({ editingDeal: deal, dealIndex: index, newDeal: false });
+    this.setState({ editingDeal: deal, dealIndex: index, newDeal: false, errorMessage: '' });
     this.props.edit();
   };
 
@@ -37,35 +42,45 @@ class Deals extends Component {
     if (result) {
       const tmpLocationDeals = { ...this.state.locationDetails };
       tmpLocationDeals.deals.splice(index, 1);
-      this.setState({ locationDetails: tmpLocationDeals });
+      this.setState({ locationDetails: tmpLocationDeals, errorMessage: '' });
       this.props.save(tmpLocationDeals);
     }
   };
 
   handleSaveDeal = (deal) => {
-    // console.log('saving deal: ', deal);
-    const finalLocation = { ...this.state.locationDetails };
-    // console.log('finalLocation: ', finalLocation);
-    this.state.newDeal
+    
+    // Validation checks
+    if ( deal.startTime > deal.endTime || deal.startTime === deal.endTime ) {
+      this.setState({errorMessage: "Start time must be earlier than end time"});
+    }
+    else if ( !deal.startTime || !deal.endTime || deal.description.length === 0 || deal.weekDays.length === 0 || deal.description[0] ==='') {
+      this.setState({ errorMessage: "You must populate all fields" });
+    }
+    else {
+      const finalLocation = { ...this.state.locationDetails };
+      this.state.newDeal
       ? finalLocation.deals.push(deal)
       : (finalLocation.deals[this.state.dealIndex] = deal);
-    // console.log('finalLocation: ', finalLocation);
-    this.props.save(finalLocation)
-    this.setState({
-      editingDeal: null,
-      newDeal: false,
-      locationDetails: finalLocation,
-    });
-    // this.props.savingCancelled();
+
+      this.props.save(finalLocation);
+
+      this.setState({
+        editingDeal: null,
+        newDeal: false,
+        locationDetails: finalLocation,
+        errorMessage: '',
+      });
+      // this.props.savingCancelled();
+    }
   };
 
   handleSaveCancel = () => {
-    this.setState({ editingDeal: null, newDeal: false });
+    this.setState({ editingDeal: null, newDeal: false, errorMessage: '' });
     this.props.savingCancelled();
   };
 
   handleNewDeal = () => {
-    this.setState({ newDeal: true });
+    this.setState({ newDeal: true, errorMessage: '' });
     this.props.edit();
   };
 
@@ -82,6 +97,7 @@ class Deals extends Component {
         confirm={this.handleSaveDeal}
         cancel={this.handleSaveCancel}
         newDeal={this.state.newDeal}
+        errorMessage={this.state.errorMessage}
       />
     );
     return (
@@ -90,8 +106,7 @@ class Deals extends Component {
         <Line classOverride="MainBody" />
         {dealsArray.map((deal, i) => {
           return (
-            <div>
-              {/* <h3>Deal {i}</h3> */}
+            <div key={i}>
               <Deal
                 deal={deal}
                 editDeal={() => this.handleEditDeal(i)}

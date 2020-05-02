@@ -57,9 +57,10 @@ class WeekDays extends Component {
           value="checkedall"
         />{" "}
         All */}
-          {this.state.weekDays.map((day) => {
+          {this.state.weekDays.map((day, i) => {
             return (
               <WeekDayCheckBox
+                key={i}
                 handleCheckChildElement={this.handleCheckChildElement}
                 {...day}
               />

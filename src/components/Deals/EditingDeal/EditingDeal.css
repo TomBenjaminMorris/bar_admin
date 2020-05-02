@@ -116,3 +116,10 @@
 .Close:after {
   transform: rotate(-45deg);
 }
+
+.ErrorMessage {
+  font-size: 18px;
+  color: rgb(255, 50, 50);
+  text-align: center;
+  margin: 15px 0px;
+}

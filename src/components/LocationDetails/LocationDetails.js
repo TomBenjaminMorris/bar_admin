@@ -20,6 +20,10 @@ class LocationDetails extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.savingCancelled();
+  }
+
   componentDidUpdate(prevProps) {
     prevProps.locationDetails !== this.props.locationDetails
       ? this.setState({ locationDetails: this.props.locationDetails })
@@ -76,6 +80,7 @@ class LocationDetails extends Component {
           <div className={classes.EditButton}>
             <img
               src={edit_icon}
+              alt="edit"
               className={classes.Edit}
               onClick={this.props.edit}
             />

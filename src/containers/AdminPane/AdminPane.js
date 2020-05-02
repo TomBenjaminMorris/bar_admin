@@ -90,7 +90,9 @@ class AdminPane extends Component {
       <SuperUser locationIdUpdate={this.props.locationIdUpdate} />
     );
 
-    const PhotosDetailsBlock = <div>PHOTOS</div>;
+    const PhotosDetailsBlock = <div>Photos functionality coming soon...</div>;
+
+    const StatsDetailsBlock = <div>Statistics interface coming soon...</div>;
 
     const HelpDetailsBlock = <div>HELP</div>;
 
@@ -102,6 +104,7 @@ class AdminPane extends Component {
         <Route path="/details" render={() => LocationDetailsBlock} />
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />
+        <Route path="/stats" render={() => StatsDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
         <Route render={() => <h1>Welcome: {this.state.locationDetails.name}</h1>} />
       </Switch>

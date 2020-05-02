@@ -8,6 +8,7 @@ export const weekDayCheckBox = (props) => {
         onClick={props.handleCheckChildElement}
         type="checkbox"
         checked={props.isChecked}
+        onChange={() => (null)}
         value={props.value}
       /><br/>
       {props.value}

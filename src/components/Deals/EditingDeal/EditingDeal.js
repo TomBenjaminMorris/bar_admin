@@ -79,6 +79,7 @@ class EditingDeal extends Component {
         </header>
 
         <WeekDays weekDays={weekDays} updated={this.handleWeekdayChange} />
+
         <div className={classes.Times}>
           <input
             type="time"
@@ -98,7 +99,7 @@ class EditingDeal extends Component {
         {description &&
           description.map((item, i) => {
             return (
-              <div className={classes.Deals}>
+              <div key={i} className={classes.Deals}>
                 <input
                   id={i}
                   type="text"
@@ -118,6 +119,8 @@ class EditingDeal extends Component {
           +
         </button>
         {/* {JSON.stringify(this.props.deal)} */}
+
+        {this.props.errorMessage && <div className={classes.ErrorMessage}>{this.props.errorMessage}</div>}
 
         <footer>
           <Button btnType={"Success"} clicked={this.returnDeal}>

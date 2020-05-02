@@ -5,7 +5,7 @@ import classes from './Line.css';
 const line = (props) => {
 
   let lineClasses = [classes.Line];
-  props.classOverride == "MainBody" ? lineClasses.push(classes.MainBody) : null;
+  props.classOverride === "MainBody" ? lineClasses.push(classes.MainBody) : null;
 
   return (
     <div className={lineClasses.join(' ')}>
