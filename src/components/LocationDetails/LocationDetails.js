@@ -17,7 +17,12 @@ class LocationDetails extends Component {
       locationDetails: this.props.locationDetails,
       showSave: false,
       locationValidated: this.props.locationDetails.validated,
+      errorMessage: '',
     };
+  }
+
+  componentDidMount() {
+    this.props.savingCancelled();
   }
 
   componentDidUpdate(prevProps) {
@@ -48,9 +53,20 @@ class LocationDetails extends Component {
     this.setState({
       locationDetails: this.props.locationDetails,
       locationValidated: this.props.locationDetails.validated,
+      errorMessage: '',
     });
     this.props.savingCancelled();
   };
+
+  handleInitialSave = () => {
+    if (!this.state.locationDetails.name || !this.state.locationDetails.address || !this.state.locationDetails.website) {
+      this.setState({errorMessage: "You must populate all fields"});
+    }
+    else {
+      this.props.initialSave();
+      this.setState({errorMessage: ''});
+    }
+  }
 
   render() {
     let modalContent = <Spinner />;
@@ -76,6 +92,7 @@ class LocationDetails extends Component {
           <div className={classes.EditButton}>
             <img
               src={edit_icon}
+              alt="edit"
               className={classes.Edit}
               onClick={this.props.edit}
             />
@@ -96,10 +113,12 @@ class LocationDetails extends Component {
           checkboxToggle={this.handleCheckboxToggle}
         />
 
+        {this.state.errorMessage && <div className={classes.ErrorMessage}>{this.state.errorMessage}</div>}
+
         {this.props.editing ? (
           <div className={classes.SaveCancelButtons}>
             {this.state.showSave && (
-              <Button btnType={"Success"} clicked={this.props.initialSave}>
+              <Button btnType={"Success"} clicked={this.handleInitialSave}>
                 Save
               </Button>
             )}

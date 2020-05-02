@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 
 import classes from "./SuperUser.css";
-import Line from "../UI/Line/Line";
 import Button from "../UI/Button/Button";
 
 class SuperUser extends Component {

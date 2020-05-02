@@ -7,6 +7,7 @@ import helpIcon from "../../../../assets/icons/help.png";
 import photosIcon from "../../../../assets/icons/image.png";
 import logOutIcon from "../../../../assets/icons/logout.png";
 import adminIcon from "../../../../assets/icons/admin.png";
+import statsIcon from "../../../../assets/icons/stats.png";
 import { NavLink } from "react-router-dom";
 
 const navigationItem = (props) => {
@@ -27,6 +28,9 @@ const navigationItem = (props) => {
       break;
     case "Photos":
       finalIcon = photosIcon;
+      break;
+    case "Stats":
+      finalIcon = statsIcon;
       break;
     case "Log Out":
       finalIcon = logOutIcon;
