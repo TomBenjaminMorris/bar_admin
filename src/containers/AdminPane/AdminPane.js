@@ -106,7 +106,7 @@ class AdminPane extends Component {
         <Route path="/photos" render={() => PhotosDetailsBlock} />
         <Route path="/stats" render={() => StatsDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
-        <Route render={() => <h1>Welcome: {this.state.locationDetails.name}</h1>} />
+        <Route render={() => <h1>Welcome, {this.state.locationDetails.name}</h1>} />
       </Switch>
     );
     return <div className={classes.AdminPane}>{mainContent}</div>;
