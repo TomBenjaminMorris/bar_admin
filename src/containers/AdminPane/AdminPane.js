@@ -7,6 +7,7 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
+import Logout from '../Auth/Logout.js/Logout';
 
 class AdminPane extends Component {
   constructor(props) {
@@ -62,9 +63,10 @@ class AdminPane extends Component {
   };
 
   render() {
+    // console.log(this.props.placeId)
     const LocationDetailsBlock = (
       <LocationDetails
-        locationDetails={this.state.locationDetails}
+        locationDetails={this.props.locationDetails}
         edit={this.handleEditing}
         initialSave={this.handleInitialSave}
         save={this.handleSave}
@@ -77,7 +79,7 @@ class AdminPane extends Component {
 
     const DealsDetailsBlock = (
       <Deals
-        locationDetails={this.state.locationDetails}
+        locationDetails={this.props.locationDetails}
         edit={this.handleEditing}
         save={this.handleSave}
         editing={this.state.editing}
@@ -96,7 +98,7 @@ class AdminPane extends Component {
 
     const HelpDetailsBlock = <div>HELP</div>;
 
-    const mainContent = !this.state.locationDetails ? (
+    const mainContent = !this.props.locationDetails ? (
       <Spinner />
     ) : (
       <Switch>
@@ -106,9 +108,11 @@ class AdminPane extends Component {
         <Route path="/photos" render={() => PhotosDetailsBlock} />
         <Route path="/stats" render={() => StatsDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
-        <Route render={() => <h1>Welcome, {this.state.locationDetails.name}</h1>} />
+        <Route path="/logout" component={Logout} />
+        <Route render={() => <h1>Welcome, {this.props.locationDetails.name}</h1>} />
       </Switch>
     );
+
     return <div className={classes.AdminPane}>{mainContent}</div>;
   }
 }
