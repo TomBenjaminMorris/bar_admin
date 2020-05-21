@@ -40,7 +40,7 @@ export const auth = (email, password) => {
       returnSecureToken: true,
     };
     let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBB_Mnsmst81atZdqmv2TBfBhZvkHX-VFQ";
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=XXX";
     axios
       .post(url, authData)
       .then((response) => {
