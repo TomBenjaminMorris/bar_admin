@@ -3,6 +3,7 @@ import axios_bars from "../../axios-bars";
 
 
 import * as actionTypes from "./actionTypes";
+import keys from '../../keys';
 
 // export const auth = (email, password) => {
 //   return (dispatch) => {
@@ -87,7 +88,7 @@ export const auth = (email, password) => {
       returnSecureToken: true,
     };
     let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=XXX";
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + keys.WEB_API_KEY;
 
     axios
       .post(url, authData)
