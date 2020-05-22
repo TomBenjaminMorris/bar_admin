@@ -7,6 +7,8 @@ const initialState = {
   error: null,
   loading: false,
   placeId: null,
+  admin: false,
+  locationData: null
 };
 
 const authStart = (state) => {
@@ -37,7 +39,11 @@ const authLogout = (state) => {
 }
 
 const updatePlaceId = (state, action) => {
-  return updateObject(state, {placeId: action.placeId});
+  return updateObject(state, {placeId: action.placeId, admin: action.admin});
+}
+
+const updateLocation = (state, action) => {
+  return updateObject(state, {locationData: action.locationData});
 }
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +53,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL: return authFail(state, action);
     case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
     case actionTypes.UPDATE_PLACE_ID: return updatePlaceId(state, action);
+    case actionTypes.UPDATE_LOCATION: return updateLocation(state, action);
     default: return state;
   }
 };

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import Logo from "../../assets/images/full_logo.png"
+import BackgroundImage from "../../assets/images/resize_bg.jpg";
 import classes from "./Auth.css";
 import * as actions from "../../store/actions/index";
 
@@ -131,11 +133,16 @@ class Auth extends Component {
 
     return (
       <div className={classes.Auth}>
-        {errorMessage}
+        <img className={classes.BackgroundImage} src={BackgroundImage} />
+        <div className={classes.AuthForm}>
+        <img className={classes.Logo} src={Logo} />
         <form onSubmit={this.submitHandler}>
           {form}
-          <button>submit</button>
+          {errorMessage}
+          <button className={classes.Button}>SIGN IN</button>
         </form>
+
+        </div>
       </div>
     );
   }

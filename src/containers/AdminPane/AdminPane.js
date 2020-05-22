@@ -102,7 +102,7 @@ class AdminPane extends Component {
       <Spinner />
     ) : (
       <Switch>
-        <Route path="/admin" render={() => SuperUserBlock} />
+        {this.props.isAdmin && <Route path="/admin" render={() => SuperUserBlock} />}
         <Route path="/details" render={() => LocationDetailsBlock} />
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />

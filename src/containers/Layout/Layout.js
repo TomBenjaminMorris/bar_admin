@@ -30,6 +30,7 @@ class Layout extends Component {
           <SideToolbar
             locationDetails={this.props.locationDetails}
             userName={this.props.locationDetails}
+            isAdmin={this.props.isAdmin}
           />
         )}
         <SideDrawer

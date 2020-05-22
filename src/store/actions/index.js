@@ -3,4 +3,5 @@ export {
   logout,
   authCheckState,
   queryPlaceId,
+  fetchLocation,
 } from './auth';
