@@ -172,7 +172,6 @@ export const updateLocation = (locationData) => {
 };
 
 export const fetchLocation = (placeId) => {
-  console.log('firing', placeId)
   return dispatch => {
     axios_bars
     .get("/bar", { params: { place_id: placeId } })

@@ -27,7 +27,9 @@ class App extends Component {
   }
   
   componentDidUpdate(prevProps) {
+
     const userId = localStorage.getItem("userId");
+    
     if(prevProps.token !== this.props.token && userId) {
       console.log('Fetching userID')
       this.props.onQueryPlaceId(this.props.token, userId);

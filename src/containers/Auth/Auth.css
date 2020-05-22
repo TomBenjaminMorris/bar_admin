@@ -5,16 +5,30 @@
 
 .BackgroundImage {
   /* Full height */
-  height: 100%;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: grayscale(30%);
+  /* filter: grayscale(30%); */
   position: fixed;
   top: 0;
   left: 0;
   z-index: -100;
+  width: 100%;
+}
+
+.BackgroundOverlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.19); /* Black background with opacity */
+  z-index: -2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  /* z-index: 200; */
 }
 
 .Logo {
@@ -50,10 +64,11 @@
   border-radius: 4px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   height: auto;
+  width: 500px;
 }
 
-@media (min-width: 600px) {
-  .Auth {
-    width: 500px;
+/* @media (min-width: 200px) {
+  .BackgroundImage {
+    width: 100%;
   }
-}
+} */
