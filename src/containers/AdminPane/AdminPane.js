@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../axios-bars";
+import {connect} from 'react-redux';
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
@@ -8,6 +9,7 @@ import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
 import Logout from '../Auth/Logout.js/Logout';
+import * as actions from '../../store/actions/index';
 
 class AdminPane extends Component {
   constructor(props) {
@@ -48,6 +50,7 @@ class AdminPane extends Component {
             locationDetails: locationToSave,
             loading: false,
           });
+          this.props.onSetLocation(locationToSave);
         })
         .catch((error) => {
           this.setState({ editing: false, saving: false, loading: false });
@@ -117,4 +120,10 @@ class AdminPane extends Component {
   }
 }
 
-export default AdminPane;
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetLocation: (locationData) => dispatch(actions.setLocation(locationData)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AdminPane);

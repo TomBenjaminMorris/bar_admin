@@ -4,4 +4,5 @@ export {
   authCheckState,
   queryPlaceId,
   fetchLocation,
+  setLocation,
 } from './auth';

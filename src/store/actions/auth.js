@@ -1,45 +1,7 @@
 import axios from "axios";
 import axios_bars from "../../axios-bars";
-
-
 import * as actionTypes from "./actionTypes";
 import keys from '../../keys';
-
-// export const auth = (email, password) => {
-//   return (dispatch) => {
-//     dispatch(authStart());
-//     const authData = {
-//       email: email,
-//       password: password,
-//       returnSecureToken: true,
-//     };
-//     let url =
-//       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBB_Mnsmst81atZdqmv2TBfBhZvkHX-VFQ";
-//     axios
-//       .post(url, authData)
-//       .then((response) => {
-//         localStorage.setItem("token", response.data.idToken);
-//         localStorage.setItem("userId", response.data.localId);
-//         dispatch(authSuccess(response.data.idToken, response.data.localId));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         dispatch(authFail(err.response.data.error));
-//       });
-//   };
-// };
-
-// export const authCheckState = () => {
-//   return (dispatch) => {
-//     const token = localStorage.getItem("token");
-//     if (!token) {
-//       dispatch(logout());
-//     } else {
-//       const userId = localStorage.getItem("userId");
-//       dispatch(authSuccess(token, userId));
-//     }
-//   };
-// };
 
 export const authStart = () => {
   return {
@@ -93,7 +55,6 @@ export const auth = (email, password) => {
     axios
       .post(url, authData)
       .then((response) => {
-        // console.log(response);
         const expirationDate = new Date(
           new Date().getTime() + response.data.expiresIn * 1000
         );
@@ -158,13 +119,12 @@ export const queryPlaceId = (token, userId) => {
         dispatch(updatePlaceId(placeId, isAdmin));
       })
       .catch((err) => {
-        // dispatch(fetchOrdersFail(err));
         console.log(err);
       });
   };
 };
 
-export const updateLocation = (locationData) => {
+export const setLocation = (locationData) => {
   return {
     type: actionTypes.UPDATE_LOCATION,
     locationData: locationData,
@@ -176,7 +136,7 @@ export const fetchLocation = (placeId) => {
     axios_bars
     .get("/bar", { params: { place_id: placeId } })
     .then((response) => {
-      dispatch(updateLocation(response.data));
+      dispatch(setLocation(response.data));
     })
     .catch((error) => {
       console.log("Index error: " + error);

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axios-bars";
 import { connect } from "react-redux";
-
 import Layout from "./containers/Layout/Layout";
 import AdminPane from "./containers/AdminPane/AdminPane";
 import Auth from "./containers/Auth/Auth";
@@ -11,25 +10,16 @@ import * as actions from "./store/actions/index";
 class App extends Component {
   state = {
     locationDetails: null,
-    locationId: null,
   };
 
   componentDidMount() {
-    // axios
-    // .get("/bar", { params: { place_id: this.state.locationId } })
-    // .then((response) => {
-    //   this.setState({ locationDetails: response.data });
-    // })
-    // .catch((error) => {
-    //   console.log("Index error: " + error);
-    // });
     this.props.onTryAutoSignup();
   }
   
   componentDidUpdate(prevProps) {
 
     const userId = localStorage.getItem("userId");
-    
+
     if(prevProps.token !== this.props.token && userId) {
       console.log('Fetching userID')
       this.props.onQueryPlaceId(this.props.token, userId);
@@ -46,16 +36,8 @@ class App extends Component {
     }
   }
 
-  handleLocationIDUpdate = (id) => {
-    this.setState({ locationId: id });
-    axios
-      .get("/bar", { params: { place_id: id } })
-      .then((response) => {
-        this.setState({ locationDetails: response.data });
-      })
-      .catch((error) => {
-        console.log("Index error: " + error);
-      });
+  handleLocationIDUpdate = (place_id) => {
+    this.props.onFetchLocation(place_id);
   };
 
   render() {
