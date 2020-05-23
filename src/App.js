@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "./axios-bars";
 import { connect } from "react-redux";
 import Layout from "./containers/Layout/Layout";
 import AdminPane from "./containers/AdminPane/AdminPane";

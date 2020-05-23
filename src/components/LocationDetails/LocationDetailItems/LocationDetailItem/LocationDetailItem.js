@@ -4,12 +4,11 @@ import classes from "./LocationDetailItem.css";
 import Checkbox from "../../../UI/Checkbox/Checkbox";
 
 const locationDetailItem = (props) => {
-
-  let editingField, viewingField = null;
+  let editingField,
+    viewingField = null;
 
   switch (props.type) {
     case "text":
-
       editingField = (
         <input
           title={props.title}
@@ -22,8 +21,24 @@ const locationDetailItem = (props) => {
       viewingField = <h2>{props.content}</h2>;
 
       break;
-    case "checkbox":
+    case "link":
+      editingField = (
+        <input
+          title={props.title}
+          type="text"
+          defaultValue={props.content}
+          onChange={(event) => props.changed(event)}
+        />
+      );
 
+      viewingField = (
+        <h2>
+          <a href={props.content}>{props.content}</a>
+        </h2>
+      );
+
+      break;
+    case "checkbox":
       editingField = (
         <Checkbox
           editing={props.editing}
@@ -31,7 +46,7 @@ const locationDetailItem = (props) => {
           checkboxToggle={props.checkboxToggle}
         />
       );
-      
+
       viewingField = editingField;
 
     default:
