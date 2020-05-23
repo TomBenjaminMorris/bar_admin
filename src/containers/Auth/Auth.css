@@ -1,7 +1,6 @@
 .Auth {
   text-align: center;
-  /* margin: auto; */
-  background-image: url('../../assets/images/resize_bg.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.19), rgba(0, 0, 0, 0.219)), url('../../assets/images/background_img2.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -11,29 +10,9 @@
   text-align: center;
 }
 
-.BackgroundOverlay {
-  position: fixed;
-  /* Sit on top of the page content */
-  width: 100%;
-  /* Full width (cover the whole page) */
-  height: 100%;
-  /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.19);
-  /* Black background with opacity */
-  z-index: 100;
-  /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer;
-  /* Add a pointer on hover */
-}
-
 .AuthForm {
   display: inline-block;
-  margin-top: 25vh;
-  z-index: 500;
+  margin-top: 30vh;
   background-color: white;
   padding: 20px 30px 30px 30px;
   box-sizing: border-box;
@@ -42,22 +21,6 @@
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   height: auto;
   width: 400px;
-}
-
-.BackgroundImage {
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -100;
-  width: 100%; */
-  /* Background image doesn't tile */
-  /* Background image is fixed in the viewport so that it doesn't move when 
-     the content's height is greater than the image's height */
-  /* This is what makes the background image rescale based
-     on the container's size */
 }
 
 .Logo {
@@ -78,10 +41,11 @@
 
 .Button:hover {
   background-color: rgba(239, 155, 58, 0.642);
+  cursor: pointer;
 }
 
-/* @media (min-width: 200px) {
-  .BackgroundImage {
-    width: 100%;
-  }
-} */
+.Button:active, .Button:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}

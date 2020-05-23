@@ -4,15 +4,8 @@ import { connect } from "react-redux";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Logo from "../../assets/images/full_logo.png";
-import BackgroundImage from "../../assets/images/resize_bg.jpg";
-// import BackgroundImageDesktop from "../../assets/images/resize_bg.jpg";
-// import BackgroundImageMobile from "../../assets/images/mobile_background.jpg";
 import classes from "./Auth.css";
 import * as actions from "../../store/actions/index";
-
-// let BackgroundImage = '';
-// const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-// vw < 1000 ? BackgroundImage = BackgroundImageMobile : BackgroundImage = BackgroundImageDesktop;
 
 class Auth extends Component {
   state = {
@@ -137,7 +130,6 @@ class Auth extends Component {
 
     return (
       <div className={classes.Auth}>
-        <div className={classes.BackgroundOverlay}></div>
         <div className={classes.AuthForm}>
           <img className={classes.Logo} src={Logo} />
           <form onSubmit={this.submitHandler}>
