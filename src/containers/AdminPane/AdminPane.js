@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../axios-bars";
+import {connect} from 'react-redux';
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
@@ -7,6 +8,8 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
+import Logout from '../Auth/Logout.js/Logout';
+import * as actions from '../../store/actions/index';
 
 class AdminPane extends Component {
   constructor(props) {
@@ -47,6 +50,7 @@ class AdminPane extends Component {
             locationDetails: locationToSave,
             loading: false,
           });
+          this.props.onSetLocation(locationToSave);
         })
         .catch((error) => {
           this.setState({ editing: false, saving: false, loading: false });
@@ -62,9 +66,10 @@ class AdminPane extends Component {
   };
 
   render() {
+    // console.log(this.props.placeId)
     const LocationDetailsBlock = (
       <LocationDetails
-        locationDetails={this.state.locationDetails}
+        locationDetails={this.props.locationDetails}
         edit={this.handleEditing}
         initialSave={this.handleInitialSave}
         save={this.handleSave}
@@ -77,7 +82,7 @@ class AdminPane extends Component {
 
     const DealsDetailsBlock = (
       <Deals
-        locationDetails={this.state.locationDetails}
+        locationDetails={this.props.locationDetails}
         edit={this.handleEditing}
         save={this.handleSave}
         editing={this.state.editing}
@@ -96,21 +101,29 @@ class AdminPane extends Component {
 
     const HelpDetailsBlock = <div>HELP</div>;
 
-    const mainContent = !this.state.locationDetails ? (
+    const mainContent = !this.props.locationDetails ? (
       <Spinner />
     ) : (
       <Switch>
-        <Route path="/admin" render={() => SuperUserBlock} />
+        {this.props.isAdmin && <Route path="/admin" render={() => SuperUserBlock} />}
         <Route path="/details" render={() => LocationDetailsBlock} />
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />
         <Route path="/stats" render={() => StatsDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
-        <Route render={() => <h1>Welcome, {this.state.locationDetails.name}</h1>} />
+        <Route path="/logout" component={Logout} />
+        <Route render={() => <h1>Welcome, {this.props.locationDetails.name}</h1>} />
       </Switch>
     );
+
     return <div className={classes.AdminPane}>{mainContent}</div>;
   }
 }
 
-export default AdminPane;
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetLocation: (locationData) => dispatch(actions.setLocation(locationData)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AdminPane);

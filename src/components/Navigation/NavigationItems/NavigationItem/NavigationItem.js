@@ -32,7 +32,7 @@ const navigationItem = (props) => {
     case "Stats":
       finalIcon = statsIcon;
       break;
-    case "Log Out":
+    case "LogOut":
       finalIcon = logOutIcon;
       break;
     default:

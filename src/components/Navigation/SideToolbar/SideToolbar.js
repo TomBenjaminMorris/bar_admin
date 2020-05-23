@@ -15,7 +15,7 @@ const sideToolbar = (props) => (
       </div>
       <nav>
         <Line />
-        <NavigationItems />
+        <NavigationItems isAdmin={props.isAdmin} />
         <Line />
       </nav>
       {props.userName && <ToolbarUser userName={props.userName.name}/>}
