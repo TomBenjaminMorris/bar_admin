@@ -1,17 +1,20 @@
 
 .SuperUser {
-
+  background-color: rgb(226, 226, 226);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .SuperUser input {
-  width: 400px;
+  width: 70%;
   padding: 5px;
   font-size: 20px;
   border-radius: 5px;
   border: none;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
   text-align: center;
 }
+
 .SuperUser input:focus {
   outline: none !important;
   border:1px solid #ffbc2c;
@@ -21,6 +24,7 @@
 .AddDealButton {
   /* float: right; */
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .ResultWrapper {
@@ -33,9 +37,10 @@
   margin: auto;
   margin-top: 10px;
   font-size: 20px;
-  background-color: whitesmoke;
+  background-color: rgb(255, 255, 255);
 }
 
 .Result:hover {
-  background-color: rgb(181, 181, 181);
+  background-color: rgb(237, 171, 48);
+  color: white;
 }

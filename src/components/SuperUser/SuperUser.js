@@ -23,9 +23,9 @@ class SuperUser extends Component {
       });
   };
 
-  handleClickLocation = (place_id) => {
-    // console.log(place_id);
-    this.props.locationIdUpdate(place_id);
+  handleClickLocation = (location) => {
+    this.props.locationIdUpdate(location.place_id);
+    this.setState({searchResult: null, searchName: location.name})
   };
 
   render() {
@@ -36,7 +36,7 @@ class SuperUser extends Component {
             <div
               key={i}
               className={classes.Result}
-              onClick={() => this.handleClickLocation(location.place_id)}
+              onClick={() => this.handleClickLocation(location)}
             >
               {location.name}
             </div>
@@ -46,10 +46,11 @@ class SuperUser extends Component {
     );
     return (
       <div className={classes.SuperUser}>
-        <h1>Super User</h1>
+        <h1>Switch Location</h1>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
+            value={this.state.searchName}
             onChange={(e) => this.setState({ searchName: e.target.value })}
           />
           {results}

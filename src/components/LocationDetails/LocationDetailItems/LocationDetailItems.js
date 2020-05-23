@@ -16,7 +16,7 @@ const locationDetailItems = (props) => {
     },
     website: {
       name: "Website",
-      type: "text",
+      type: "link",
     },
     validated: {
       name: "Displayed",
