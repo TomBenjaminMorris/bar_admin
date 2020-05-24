@@ -54,7 +54,9 @@
   }
   .HeaderImage {
     background: url('../../assets/images/background_img2.jpg');
-    height: 100vh;
+    height: -webkit-calc(100% - 50px);
+    height:    -moz-calc(100% - 50px);
+    height:         calc(100% - 50px);
     width: 100%;
   }
   .DefaultView h2 {
@@ -78,7 +80,7 @@
   .DefaultView {
   }
   .HeaderImage {
-    background: url('../../assets/images/background_img1.jpg');
+    background: url('../../assets/images/background_img3.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
