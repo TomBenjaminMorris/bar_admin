@@ -13,8 +13,9 @@ class SuperUser extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({ searchName: event.target.value })
     axios_bars
-      .get("/find", { params: { name: this.state.searchName } })
+      .get("/find", { params: { name: event.target.value } })
       .then((response) => {
         this.setState({ searchResult: response.data });
       })
@@ -51,13 +52,13 @@ class SuperUser extends Component {
           <input
             type="text"
             value={this.state.searchName}
-            onChange={(e) => this.setState({ searchName: e.target.value })}
+            onChange={this.handleSubmit}
           />
           {results}
           <div className={classes.AddDealButton}>
-            <Button btnType={"Add"} clicked={this.handleSubmit}>
+            {/* <Button btnType={"Add"} clicked={this.handleSubmit}>
               Search
-            </Button>
+            </Button> */}
           </div>
         </form>
         {/* id<input type="text" onChange={(e) => this.setState({locationID: e.target.value})}/> */}
