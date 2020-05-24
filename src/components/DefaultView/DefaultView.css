@@ -1,0 +1,105 @@
+.DefaultView {
+  text-align: center;
+  font-size: 40px;
+}
+
+.HeaderImage {
+  filter: grayscale(40%);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  z-index: -100;
+}
+
+.DefaultView h2 {
+  color: white;
+  font-family: Circular-black;
+}
+
+.Button {
+  font-family: Circular-black;
+  font-size: 20px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: teal;
+  color: white;
+}
+
+.Button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.Button:active, .Button:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}
+
+.Button img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Exculsively For Mobile Styles */
+
+@media (max-width: 500px) {
+  .DefaultView {
+    margin: auto;
+    margin-top: 40px;
+    font-size: 30px;
+    width: 80%;
+  }
+  .HeaderImage {
+    background: url('../../assets/images/background_img2.jpg');
+    height: 100vh;
+    width: 100%;
+  }
+  .DefaultView h2 {
+    font-size: 55px;
+  }
+  .DefaultView h3 {
+    font-size: 25px;
+    color: white;
+  }
+  .Button {
+    padding: 15px;
+    background-color: teal;
+    text-align: center;
+  }
+}
+
+/* Exculsively For Desktop Styles */
+
+@media (min-width: 501px) {
+  .DefaultView {
+    margin-top: 150px;
+  }
+  .HeaderImage {
+    background: url('../../assets/images/background_img1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+  }
+  .DefaultView h2 {
+    top: 250px;
+    /* left: auto; */
+    max-width: 1000px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  .DefaultView h3 {
+    margin-top: 500px;
+    font-size: 25px;
+  }
+  .Button {
+    margin-right: 20px;
+  }
+}

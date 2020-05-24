@@ -10,6 +10,7 @@ import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
 import Logout from '../Auth/Logout.js/Logout';
 import * as actions from '../../store/actions/index';
+import DefaultView from "../../components/DefaultView/DefaultView";
 
 class AdminPane extends Component {
   constructor(props) {
@@ -101,6 +102,10 @@ class AdminPane extends Component {
 
     const HelpDetailsBlock = <div>HELP</div>;
 
+    const DefaultBlock = (
+      this.props.locationDetails && <DefaultView locationName={this.props.locationDetails.name} place_id={this.props.locationDetails.place_id} />
+    )
+
     const mainContent = !this.props.locationDetails ? (
       <Spinner />
     ) : (
@@ -112,7 +117,7 @@ class AdminPane extends Component {
         <Route path="/stats" render={() => StatsDetailsBlock} />
         <Route path="/help" render={() => HelpDetailsBlock} />
         <Route path="/logout" component={Logout} />
-        <Route render={() => <h1>Welcome, {this.props.locationDetails.name}</h1>} />
+        <Route render={() => DefaultBlock} />
       </Switch>
     );
 
