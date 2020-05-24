@@ -4,3 +4,4 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const UPDATE_PLACE_ID = 'UPDATE_PLACE_ID';
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
+export const PASSWORD_RESET = 'PASSWORD_RESET';

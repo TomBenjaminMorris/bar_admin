@@ -51,6 +51,14 @@
   -moz-outline-style: none;
 }
 
+.ForgotPassword {
+  color: blue;
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: Circular;
+  margin-top: 20px;
+}
+
 @media (max-width: 500px) {
   .AuthForm {
     width: 100%;

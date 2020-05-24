@@ -143,3 +143,33 @@ export const fetchLocation = (placeId) => {
     });
   }
 }
+
+export const resetPasswordAction = () => {
+  return {
+    type: actionTypes.PASSWORD_RESET,
+  };
+};
+
+export const resetPassword = (email) => {
+  return dispatch => {
+    
+    const authData = {
+      requestType: "PASSWORD_RESET",
+      email: email,
+    };
+    let url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + keys.WEB_API_KEY;
+
+    axios
+      .post(url, authData)
+      .then((response) => {
+        const expirationDate = new Date(
+          new Date().getTime() + response.data.expiresIn * 1000
+        );
+        dispatch(resetPasswordAction());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}

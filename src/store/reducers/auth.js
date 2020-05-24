@@ -54,6 +54,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
     case actionTypes.UPDATE_PLACE_ID: return updatePlaceId(state, action);
     case actionTypes.UPDATE_LOCATION: return updateLocation(state, action);
+    case actionTypes.PASSWORD_RESET: return {...state};
     default: return state;
   }
 };

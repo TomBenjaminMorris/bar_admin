@@ -5,4 +5,5 @@ export {
   queryPlaceId,
   fetchLocation,
   setLocation,
+  resetPassword,
 } from './auth';
