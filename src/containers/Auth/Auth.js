@@ -93,7 +93,7 @@ class Auth extends Component {
     event.preventDefault();
     if (this.state.passwordReset) {
       this.props.onPasswordReset(this.state.controls.email.value);
-      alert('Link sent');
+      alert("Link sent");
       this.setState({ passwordReset: false });
     } else {
       this.props.onAuth(
@@ -104,7 +104,9 @@ class Auth extends Component {
   };
 
   handlePasswordResetToggle = () => {
-    this.setState({ passwordReset: true });
+    this.setState((prevState) => {
+      return { passwordReset: !prevState.passwordReset };
+    });
   };
 
   render() {
@@ -165,14 +167,12 @@ class Auth extends Component {
                 ? "Email To Send Reset Link"
                 : "Sign In"}
             </button>
-            {!this.state.passwordReset && (
-              <div
-                className={classes.ForgotPassword}
-                onClick={this.handlePasswordResetToggle}
-              >
-                Forgot Password?
-              </div>
-            )}
+            <div
+              className={classes.ForgotPassword}
+              onClick={this.handlePasswordResetToggle}
+            >
+              {this.state.passwordReset ? "Cancel" : "Forgot Password?"}
+            </div>
           </form>
         </div>
       </div>
