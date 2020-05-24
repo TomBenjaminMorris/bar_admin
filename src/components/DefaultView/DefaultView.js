@@ -9,38 +9,41 @@ import website_icon from "../../assets/icons/website.png";
 const defaultView = (props) => {
   return (
     <div className={classes.DefaultView}>
-      <div className={classes.HeaderImage}></div>
+      <div className={classes.HeaderImage}>
+      </div>
 
-      <h2>Welcome, {props.locationName}</h2>
-      <h3>Get started by visiting the following pages:</h3>
+      <div className={classes.ButtonLinks}>
+        <h2>Welcome, <br/> {props.locationName}</h2>
+        <h3>Get started by visiting the following pages:</h3>
 
-      <Link to="/details">
-        <button className={classes.Button}>
-          <img src={location_icon} />
-          View/Edit Your Locations Details
-        </button>
-      </Link>
+        <Link to="/details">
+          <button className={classes.Button}>
+            <img src={location_icon} />
+            View/Edit Your Locations Details
+          </button>
+        </Link>
 
-      <Link to="/deals">
-        <button className={classes.Button}>
-          <img src={deals_icon} />
-          View/Edit Your Happy Hour Deals
-        </button>
-      </Link>
+        <Link to="/deals">
+          <button className={classes.Button}>
+            <img src={deals_icon} />
+            View/Edit Your Happy Hour Deals
+          </button>
+        </Link>
 
-      <Link to="/help">
-        <button className={classes.Button}>
-          <img src={help_icon} />
-          Need Help Getting Started?
-        </button>
-      </Link>
+        <Link to="/help">
+          <button className={classes.Button}>
+            <img src={help_icon} />
+            Need Help Getting Started?
+          </button>
+        </Link>
 
-      <a href={"https://hapihour.io/details/" + props.place_id}>
-        <button className={classes.Button}>
-          <img src={website_icon} />
-          Visit Your Hapihour Web Page
-        </button>
-      </a>
+        <a href={"https://hapihour.io/details/" + props.place_id}>
+          <button className={classes.Button}>
+            <img src={website_icon} />
+            Visit Your Hapihour Web Page
+          </button>
+        </a>
+      </div>
     </div>
   );
 };
