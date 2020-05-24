@@ -26,6 +26,7 @@
 .Logo {
   height: 140px;
   margin: auto;
+  margin-bottom: -10px;
 }
 
 .Button {
@@ -48,4 +49,37 @@
   outline: 0;
   border: none;
   -moz-outline-style: none;
+}
+
+.ForgotPassword {
+  color: blue;
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: Circular;
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  .AuthForm {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 15px 15px 30px 15px;
+    border-radius: 0px;
+    font-size: 20px;
+    opacity: 0.96;
+  }
+
+  .Button {
+    font-family: Circular;
+    font-size: 20px;
+    padding: 5px 15px;
+  }
+
+  .Logo {
+    height: 110px;
+    margin: auto;
+    margin-bottom: -10px;
+  }
 }

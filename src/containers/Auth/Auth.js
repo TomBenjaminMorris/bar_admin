@@ -39,6 +39,7 @@ class Auth extends Component {
         touched: false,
       },
     },
+    passwordReset: false,
   };
 
   checkValidity(value, rules) {
@@ -90,10 +91,22 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onAuth(
-      this.state.controls.email.value,
-      this.state.controls.password.value
-    );
+    if (this.state.passwordReset) {
+      this.props.onPasswordReset(this.state.controls.email.value);
+      alert("Link sent");
+      this.setState({ passwordReset: false });
+    } else {
+      this.props.onAuth(
+        this.state.controls.email.value,
+        this.state.controls.password.value
+      );
+    }
+  };
+
+  handlePasswordResetToggle = () => {
+    this.setState((prevState) => {
+      return { passwordReset: !prevState.passwordReset };
+    });
   };
 
   render() {
@@ -118,6 +131,20 @@ class Auth extends Component {
       />
     ));
 
+    if (this.state.passwordReset) {
+      form = (
+        <Input
+          elementType={this.state.controls.email.elementType}
+          elementConfig={this.state.controls.email.elementConfig}
+          value={this.state.controls.email.value}
+          invalid={!this.state.controls.email.valid}
+          shouldValidate={this.state.controls.email.validation}
+          touched={this.state.controls.email.touched}
+          changed={(event) => this.inputChangedHandler(event, "email")}
+        />
+      );
+    }
+
     if (this.props.loading) {
       form = <Spinner />;
     }
@@ -135,7 +162,17 @@ class Auth extends Component {
           <form onSubmit={this.submitHandler}>
             {form}
             {errorMessage}
-            <button className={classes.Button}>Sign In</button>
+            <button className={classes.Button}>
+              {this.state.passwordReset
+                ? "Email To Send Reset Link"
+                : "Sign In"}
+            </button>
+            <div
+              className={classes.ForgotPassword}
+              onClick={this.handlePasswordResetToggle}
+            >
+              {this.state.passwordReset ? "Cancel" : "Forgot Password?"}
+            </div>
           </form>
         </div>
       </div>
@@ -154,6 +191,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password) => dispatch(actions.auth(email, password)),
+    onPasswordReset: (email) => dispatch(actions.resetPassword(email)),
   };
 };
 

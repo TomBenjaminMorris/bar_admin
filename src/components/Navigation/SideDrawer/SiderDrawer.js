@@ -1,12 +1,10 @@
 import React from 'react';
-
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Aux from '../../../hoc/Aux/Aux';
 import Line from '../../UI/Line/Line';
-import ToolbarUser from '../ToolbarUser/ToolbarUser';
 
 const sideDrawer = (props) => {
   let attachedClasses = [classes.SideDrawer, classes.Closed];
@@ -25,7 +23,6 @@ const sideDrawer = (props) => {
           <NavigationItems />
           <Line />
         </nav>
-        <ToolbarUser />
       </div>
     </Aux>
   )
