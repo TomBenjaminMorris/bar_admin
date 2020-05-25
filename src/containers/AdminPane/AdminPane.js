@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../axios-bars";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
@@ -8,9 +8,10 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
-import Logout from '../Auth/Logout.js/Logout';
-import * as actions from '../../store/actions/index';
+import Logout from "../Auth/Logout.js/Logout";
+import * as actions from "../../store/actions/index";
 import DefaultView from "../../components/DefaultView/DefaultView";
+import Help from "../../components/Help/Help";
 
 class AdminPane extends Component {
   constructor(props) {
@@ -100,17 +101,22 @@ class AdminPane extends Component {
 
     const StatsDetailsBlock = <div>Statistics interface coming soon...</div>;
 
-    const HelpDetailsBlock = <div>HELP</div>;
+    const HelpDetailsBlock = <Help/>;
 
-    const DefaultBlock = (
-      this.props.locationDetails && <DefaultView locationName={this.props.locationDetails.name} place_id={this.props.locationDetails.place_id} />
-    )
+    const DefaultBlock = this.props.locationDetails && (
+      <DefaultView
+        locationName={this.props.locationDetails.name}
+        place_id={this.props.locationDetails.place_id}
+      />
+    );
 
     const mainContent = !this.props.locationDetails ? (
       <Spinner />
     ) : (
       <Switch>
-        {this.props.isAdmin && <Route path="/admin" render={() => SuperUserBlock} />}
+        {this.props.isAdmin && (
+          <Route path="/admin" render={() => SuperUserBlock} />
+        )}
         <Route path="/details" render={() => LocationDetailsBlock} />
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />
@@ -125,10 +131,11 @@ class AdminPane extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onSetLocation: (locationData) => dispatch(actions.setLocation(locationData)),
-  }
-}
+    onSetLocation: (locationData) =>
+      dispatch(actions.setLocation(locationData)),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(AdminPane);
