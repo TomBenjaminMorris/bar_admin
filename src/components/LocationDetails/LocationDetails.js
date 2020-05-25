@@ -8,6 +8,7 @@ import Modal from "../UI/Modal/Modal";
 import Dialogue from "../UI/Dialogue/Dialogue";
 import Spinner from "../UI/Spinner/Spinner";
 import edit_icon from "../../assets/icons/edit.png";
+const socialKeys = ['facebook', 'instagram', 'twitter'];
 
 class LocationDetails extends Component {
   constructor(props) {
@@ -35,7 +36,12 @@ class LocationDetails extends Component {
     let tmpLocation = { ...this.state.locationDetails };
     const fieldVal = e.target.value;
     const fieldTitle = e.target.title.toLowerCase();
-    tmpLocation[fieldTitle] = fieldVal;
+    tmpLocation.social ? null : tmpLocation['social'] = {
+      facebook: "",
+      instagram: "",
+      twitter: "",
+    }
+    socialKeys.includes(fieldTitle) ? tmpLocation.social[fieldTitle] = fieldVal : tmpLocation[fieldTitle] = fieldVal;
     this.setState({ locationDetails: tmpLocation, showSave: true });
   };
 
