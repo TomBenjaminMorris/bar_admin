@@ -17,11 +17,25 @@ const locationDetailItems = (props) => {
       name: "Website",
       type: "link",
     },
+    facebook: {
+      name: "Facebook",
+      type: "link",
+    },
+    instagram: {
+      name: "Instagram",
+      type: "link",
+    },
+    twitter: {
+      name: "Twitter",
+      type: "link",
+    },
     validated: {
       name: "Displayed",
       type: "checkbox",
     },
   };
+
+  const socialKeys = ['facebook', 'instagram', 'twitter'];
 
   let locationItems = [];
   const templateKeys = Object.keys(locationTemplate);
@@ -32,7 +46,7 @@ const locationDetailItems = (props) => {
         <LocationDetailItem
           key={key}
           title={locationTemplate[key].name}
-          content={props.locationDetails[key]}
+          content={socialKeys.includes(key) && props.locationDetails.social ? props.locationDetails.social[key] : props.locationDetails[key]}
           editing={props.editing}
           changed={props.updateField}
           type={locationTemplate[key].type}

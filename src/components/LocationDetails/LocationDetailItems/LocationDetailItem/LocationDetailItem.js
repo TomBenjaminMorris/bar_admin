@@ -33,7 +33,7 @@ const locationDetailItem = (props) => {
 
       viewingField = (
         <h2>
-          <a href={props.content}>{props.content}</a>
+          <a href={props.content}>{props.content ? props.content : "N/A" }</a>
         </h2>
       );
 
