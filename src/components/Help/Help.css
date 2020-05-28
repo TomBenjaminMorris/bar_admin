@@ -17,7 +17,6 @@
   font-size: 30px;
 }
 
-
 .HelpLinks {
   margin: auto;
   margin-top: 20px;
@@ -32,4 +31,17 @@
   width: 120px;
   cursor: pointer;
   margin: 20px;
+}
+
+@media (max-width: 500px) {
+  .HelpLinks img {
+    width: 70px;
+    margin: none;
+  }
+
+  .Description {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+  }
 }

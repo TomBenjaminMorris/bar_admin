@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../axios-bars";
 import { connect } from "react-redux";
+import asyncComponent from '../../hoc/asyncComponent/asyncComponent';
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
@@ -8,10 +9,16 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { Switch, Route } from "react-router-dom";
 import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
-import Logout from "../Auth/Logout.js/Logout";
 import * as actions from "../../store/actions/index";
 import DefaultView from "../../components/DefaultView/DefaultView";
-import Help from "../../components/Help/Help";
+
+const asyncHelpComponent = asyncComponent(() => {
+  return import("../../components/Help/Help");
+})
+
+const asyncLogoutComponent = asyncComponent(() => {
+  return import("../Auth/Logout/Logout");
+})
 
 class AdminPane extends Component {
   constructor(props) {
@@ -101,8 +108,6 @@ class AdminPane extends Component {
 
     const StatsDetailsBlock = <div>Statistics interface coming soon...</div>;
 
-    const HelpDetailsBlock = <Help/>;
-
     const DefaultBlock = this.props.locationDetails && (
       <DefaultView
         locationName={this.props.locationDetails.name}
@@ -121,8 +126,8 @@ class AdminPane extends Component {
         <Route path="/deals" render={() => DealsDetailsBlock} />
         <Route path="/photos" render={() => PhotosDetailsBlock} />
         <Route path="/stats" render={() => StatsDetailsBlock} />
-        <Route path="/help" render={() => HelpDetailsBlock} />
-        <Route path="/logout" component={Logout} />
+        <Route path="/help" component={asyncHelpComponent} />
+        <Route path="/logout" component={asyncLogoutComponent} />
         <Route render={() => DefaultBlock} />
       </Switch>
     );
