@@ -2,6 +2,7 @@ import React from "react";
 
 import classes from "./LocationDetailItems.css";
 import LocationDetailItem from "./LocationDetailItem/LocationDetailItem";
+import OpeningTimes from "./OpeningTimes/OpeningTimes";
 
 const locationDetailItems = (props) => {
   const locationTemplate = {
@@ -57,7 +58,8 @@ const locationDetailItems = (props) => {
     });
   }
 
-  return <div className={classes.LocationDetailItems}>{locationItems}</div>;
+  return <div className={classes.LocationDetailItems}>{locationItems}
+  <OpeningTimes /></div>;
 };
 
 export default locationDetailItems;
