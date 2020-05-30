@@ -1,64 +1,61 @@
 import React from "react";
 import classes from "./OpeningTimes.css";
+const daysAndTimes = [
+  {
+    mon: {
+      open: "07:00",
+      close: "19:00",
+    },
+    tue: {
+      open: "07:00",
+      close: "19:00",
+    },
+    wed: {
+      open: "07:00",
+      close: "19:00",
+    },
+    thu: {
+      open: "07:00",
+      close: "19:00",
+    },
+    fri: {
+      open: "07:00",
+      close: "19:00",
+    },
+    sat: {
+      open: "07:00",
+      close: "19:00",
+    },
+    sun: {
+      open: "07:00",
+      close: "19:00",
+    },
+  },
+];
+const daysAndTimesKeys = Object.keys(daysAndTimes[0]);
 
 const openingTimes = (props) => {
-  const daysAndTimes = [
-    {
-      day: "Mon",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Tue",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Wed",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Thu",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Fri",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Sat",
-      open: "07:00",
-      close: "19:00",
-    },
-    {
-      day: "Sun",
-      open: "07:00",
-      close: "19:00",
-    },
-  ];
+  
   return (
     <div className={classes.OpeningTimes}>
       {/* <div className={classes.Title}>OPENING TIMES</div> */}
       <div className={classes.DaysAndTimes}>
-        {daysAndTimes.map((dayAndTime) => {
+        {daysAndTimesKeys.map((day) => {
           return (
-            <div className={classes.SingleDayAndTime}>
+            <div key={day} className={classes.SingleDayAndTime}>
               <div className={classes.Day}>
-                <div>{dayAndTime.day}</div>
+                <div>{day}</div>
               </div>
               {props.editing ? (
-                <input className={classes.Time} type="time" value={dayAndTime.open} />
+                <input title={day + "-open"} className={classes.Time} type="time" defaultValue={daysAndTimes[0][day].open} onChange={(event) => props.changed(event)} />
               ) : (
-                <div className={classes.Time}>{dayAndTime.open}</div>
+                <div className={classes.Time}>{daysAndTimes[0][day].open}</div>
               )}
               <div className={classes.Time}>{" - "}</div>
               {props.editing ? (
-                <input className={classes.Time} type="time" value={dayAndTime.close} />
+                <input title={day + "-close"} className={classes.Time} type="time" defaultValue={daysAndTimes[0][day].close} onChange={(event) => props.changed(event)} />
               ) : (
-                <div className={classes.Time}>{dayAndTime.close}</div>
+                <div className={classes.Time}>{daysAndTimes[0][day].close}</div>
               )}
             </div>
           );
