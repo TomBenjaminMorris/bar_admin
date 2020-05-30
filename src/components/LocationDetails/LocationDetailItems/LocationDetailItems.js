@@ -14,6 +14,10 @@ const locationDetailItems = (props) => {
       name: "Address",
       type: "text",
     },
+    openingTimes: {
+      name: "Opening Times",
+      type: "times",
+    },
     website: {
       name: "Website",
       type: "link",
@@ -58,8 +62,7 @@ const locationDetailItems = (props) => {
     });
   }
 
-  return <div className={classes.LocationDetailItems}>{locationItems}
-  <OpeningTimes /></div>;
+  return <div className={classes.LocationDetailItems}>{locationItems}</div>;
 };
 
 export default locationDetailItems;
