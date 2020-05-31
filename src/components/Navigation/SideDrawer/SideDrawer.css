@@ -8,16 +8,20 @@
   z-index: 300;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
-
-
-  /* width: 220px; */
   background-color: rgb(74, 74, 74);
   padding: 55px 16px;
+  overflow: scroll;
 }
 
 @media (min-width: 500px) {
   .SideDrawer {
     display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .SideDrawer {
+    max-width: 80%;
   }
 }
 
