@@ -2,7 +2,6 @@ import React from "react";
 
 import classes from "./LocationDetailItems.css";
 import LocationDetailItem from "./LocationDetailItem/LocationDetailItem";
-import OpeningTimes from "./OpeningTimes/OpeningTimes";
 
 const locationDetailItems = (props) => {
   const locationTemplate = {

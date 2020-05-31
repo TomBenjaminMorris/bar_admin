@@ -3,32 +3,32 @@ import classes from "./OpeningTimes.css";
 const defaultTemplate = [
   {
     mon: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     tue: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     wed: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     thu: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     fri: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     sat: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
     sun: {
-      open: "00:00",
-      close: "00:00",
+      open: "",
+      close: "",
     },
   },
 ];
@@ -38,7 +38,6 @@ const openingTimes = (props) => {
   
   let daysAndTimes = props.openingTimes[0];
   daysAndTimes === undefined ? daysAndTimes = defaultTemplate[0] : delete daysAndTimes['_id'];
-  console.log(daysAndTimes);
   
   const daysAndTimesKeys = Object.keys(daysAndTimes);
   
@@ -53,7 +52,7 @@ const openingTimes = (props) => {
             daysAndTimes[day] && (
               <div key={day} className={classes.SingleDayAndTime}>
                 <div className={classes.Day}>
-                  <div>{day}</div>
+                  <div>{day.charAt(0).toUpperCase() + day.slice(1)}</div>
                 </div>
                 {props.editing ? (
                   <input title={day + "-open"} className={classes.Time} type="time" defaultValue={openTime} onChange={(event) => props.changed(event)} />

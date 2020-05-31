@@ -68,7 +68,6 @@ class AdminPane extends Component {
   };
 
   render() {
-    // console.log(this.props.placeId)
     const LocationDetailsBlock = (
       <LocationDetails
         locationDetails={this.props.locationDetails}
