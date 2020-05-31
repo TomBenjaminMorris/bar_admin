@@ -71,14 +71,14 @@ class LocationDetails extends Component {
   }
 
   handleFieldUpdate = (e) => {
+    
     let tmpLocation = { ...this.state.locationDetails };
     const fieldVal = e.target.value;
     const fieldTitle = e.target.title.toLowerCase();
     const openingTimesDay = fieldTitle.split("-")[0];
     const openingTimesType = fieldTitle.split("-")[1];
-    console.log(fieldVal, fieldTitle, openingTimesDay, openingTimesType);
 
-    tmpLocation.openingTimes ? null : tmpLocation["openingTimes"] = openingTimesTemplate;
+    tmpLocation.openingTimes.length !== 0 ? null : tmpLocation["openingTimes"] = openingTimesTemplate;
     tmpLocation.social ? null : tmpLocation["social"] = socialTemplate;
     
     if (socialKeys.includes(fieldTitle)) {
@@ -88,7 +88,6 @@ class LocationDetails extends Component {
     } else {
       tmpLocation[fieldTitle] = fieldVal;
     }
-    console.log(tmpLocation);
 
     this.setState({ locationDetails: tmpLocation, showSave: true });
   };
