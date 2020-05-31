@@ -52,9 +52,8 @@ const locationDetailItem = (props) => {
       break;
     case "times":
       editingField = (
-        <OpeningTimes editing={props.editing} changed={(event) => props.changed(event)}/>
+        <OpeningTimes editing={props.editing} openingTimes={props.openingTimes} changed={(event) => props.changed(event)}/>
       );
-
       viewingField = editingField;
       break;
     default:
