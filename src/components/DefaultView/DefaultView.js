@@ -18,28 +18,28 @@ const defaultView = (props) => {
 
         <Link to="/details">
           <button className={classes.Button}>
-            <img src={location_icon} />
+            <img src={location_icon} alt="location"/>
             View/Edit Your Locations Details
           </button>
         </Link>
 
         <Link to="/deals">
           <button className={classes.Button}>
-            <img src={deals_icon} />
+            <img src={deals_icon} alt="deals"/>
             View/Edit Your Happy Hour Deals
           </button>
         </Link>
 
         <Link to="/help">
           <button className={classes.Button}>
-            <img src={help_icon} />
+            <img src={help_icon} alt="help"/>
             Need Help Getting Started?
           </button>
         </Link>
 
         <a href={"https://hapihour.io/details/" + props.place_id}>
           <button className={classes.Button}>
-            <img src={website_icon} />
+            <img src={website_icon} alt="website"/>
             Visit Your Hapihour Web Page
           </button>
         </a>
