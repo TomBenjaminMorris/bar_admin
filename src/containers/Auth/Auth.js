@@ -158,7 +158,7 @@ class Auth extends Component {
     return (
       <div className={classes.Auth}>
         <div className={classes.AuthForm}>
-          <img className={classes.Logo} src={Logo} />
+          <img className={classes.Logo} src={Logo} alt="logo"/>
           <form onSubmit={this.submitHandler}>
             {form}
             {errorMessage}

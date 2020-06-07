@@ -15,11 +15,11 @@ const deal = (props) => {
 
   return (
     <div className={classes.Deal}>
-      <img src={edit_icon} className={classes.Edit} onClick={props.editDeal} />
-      <img src={delete_icon} className={classes.Delete} onClick={props.removeDeal} />
-      <img className={classes.CalendarIcon} src={calendar_icon} />
+      <img src={edit_icon} className={classes.Edit} onClick={props.editDeal} alt="edit"/>
+      <img src={delete_icon} className={classes.Delete} onClick={props.removeDeal} alt="delete"/>
+      <img className={classes.CalendarIcon} src={calendar_icon} alt="calendar"/>
       <div className={classes.Days}>{weekDayFinal}</div>
-      <img className={classes.TimeIcon} src={time_icon} />
+      <img className={classes.TimeIcon} src={time_icon} alt="time"/>
       <div className={classes.Time}>
         {startTime} - {endTime}
       </div>

@@ -13,6 +13,10 @@ const locationDetailItems = (props) => {
       name: "Address",
       type: "text",
     },
+    openingTimes: {
+      name: "Opening Times",
+      type: "times",
+    },
     website: {
       name: "Website",
       type: "link",
@@ -47,6 +51,7 @@ const locationDetailItems = (props) => {
           key={key}
           title={locationTemplate[key].name}
           content={socialKeys.includes(key) && props.locationDetails.social ? props.locationDetails.social[key] : props.locationDetails[key]}
+          openingTimes={props.locationDetails.openingTimes}
           editing={props.editing}
           changed={props.updateField}
           type={locationTemplate[key].type}

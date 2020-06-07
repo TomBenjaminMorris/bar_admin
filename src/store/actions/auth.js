@@ -163,9 +163,6 @@ export const resetPassword = (email) => {
     axios
       .post(url, authData)
       .then((response) => {
-        const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
-        );
         dispatch(resetPasswordAction());
       })
       .catch((err) => {

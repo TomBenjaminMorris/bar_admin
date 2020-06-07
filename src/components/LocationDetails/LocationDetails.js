@@ -8,7 +8,45 @@ import Modal from "../UI/Modal/Modal";
 import Dialogue from "../UI/Dialogue/Dialogue";
 import Spinner from "../UI/Spinner/Spinner";
 import edit_icon from "../../assets/icons/edit.png";
-const socialKeys = ['facebook', 'instagram', 'twitter'];
+const socialKeys = ["facebook", "instagram", "twitter"];
+const socialTemplate = {
+  facebook: "",
+  instagram: "",
+  twitter: "",
+};
+const openingTimesKeys = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const openingTimesTemplate = [
+  {
+    mon: {
+      open: "",
+      close: "",
+    },
+    tue: {
+      open: "",
+      close: "",
+    },
+    wed: {
+      open: "",
+      close: "",
+    },
+    thu: {
+      open: "",
+      close: "",
+    },
+    fri: {
+      open: "",
+      close: "",
+    },
+    sat: {
+      open: "",
+      close: "",
+    },
+    sun: {
+      open: "",
+      close: "",
+    },
+  },
+];
 
 class LocationDetails extends Component {
   constructor(props) {
@@ -18,7 +56,7 @@ class LocationDetails extends Component {
       locationDetails: this.props.locationDetails,
       showSave: false,
       locationValidated: this.props.locationDetails.validated,
-      errorMessage: '',
+      errorMessage: "",
     };
   }
 
@@ -33,15 +71,24 @@ class LocationDetails extends Component {
   }
 
   handleFieldUpdate = (e) => {
+    
     let tmpLocation = { ...this.state.locationDetails };
     const fieldVal = e.target.value;
     const fieldTitle = e.target.title.toLowerCase();
-    tmpLocation.social ? null : tmpLocation['social'] = {
-      facebook: "",
-      instagram: "",
-      twitter: "",
+    const openingTimesDay = fieldTitle.split("-")[0];
+    const openingTimesType = fieldTitle.split("-")[1];
+
+    tmpLocation.openingTimes.length !== 0 ? null : tmpLocation["openingTimes"] = openingTimesTemplate;
+    tmpLocation.social ? null : tmpLocation["social"] = socialTemplate;
+    
+    if (socialKeys.includes(fieldTitle)) {
+      tmpLocation.social[fieldTitle] = fieldVal;
+    } else if (openingTimesKeys.includes(openingTimesDay)) {
+      tmpLocation.openingTimes[0][openingTimesDay][openingTimesType] = fieldVal;
+    } else {
+      tmpLocation[fieldTitle] = fieldVal;
     }
-    socialKeys.includes(fieldTitle) ? tmpLocation.social[fieldTitle] = fieldVal : tmpLocation[fieldTitle] = fieldVal;
+
     this.setState({ locationDetails: tmpLocation, showSave: true });
   };
 
@@ -59,20 +106,23 @@ class LocationDetails extends Component {
     this.setState({
       locationDetails: this.props.locationDetails,
       locationValidated: this.props.locationDetails.validated,
-      errorMessage: '',
+      errorMessage: "",
     });
     this.props.savingCancelled();
   };
 
   handleInitialSave = () => {
-    if (!this.state.locationDetails.name || !this.state.locationDetails.address || !this.state.locationDetails.website) {
-      this.setState({errorMessage: "You must populate all fields"});
-    }
-    else {
+    if (
+      !this.state.locationDetails.name ||
+      !this.state.locationDetails.address ||
+      !this.state.locationDetails.website
+    ) {
+      this.setState({ errorMessage: "You must populate all fields" });
+    } else {
       this.props.initialSave();
-      this.setState({errorMessage: ''});
+      this.setState({ errorMessage: "" });
     }
-  }
+  };
 
   render() {
     let modalContent = <Spinner />;
@@ -119,7 +169,9 @@ class LocationDetails extends Component {
           checkboxToggle={this.handleCheckboxToggle}
         />
 
-        {this.state.errorMessage && <div className={classes.ErrorMessage}>{this.state.errorMessage}</div>}
+        {this.state.errorMessage && (
+          <div className={classes.ErrorMessage}>{this.state.errorMessage}</div>
+        )}
 
         {this.props.editing ? (
           <div className={classes.SaveCancelButtons}>

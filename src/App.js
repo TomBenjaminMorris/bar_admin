@@ -20,17 +20,14 @@ class App extends Component {
     const userId = localStorage.getItem("userId");
 
     if(prevProps.token !== this.props.token && userId) {
-      console.log('Fetching userID')
       this.props.onQueryPlaceId(this.props.token, userId);
     }
 
     if(prevProps.placeId !== this.props.placeId) {
-      console.log('Fetching Location data')
       this.props.onFetchLocation(this.props.placeId);
     }
 
     if(prevProps.locationData !== this.props.locationData) {
-      console.log('Updating location state')
       this.setState({locationDetails: this.props.locationData});
     }
   }

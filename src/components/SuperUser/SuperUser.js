@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
 import classes from "./SuperUser.css";
-import Button from "../UI/Button/Button";
+// import Button from "../UI/Button/Button";
 import axios_bars from "../../axios-bars";
 
 class SuperUser extends Component {
   state = {
     locationID: null,
-    searchName: null,
+    searchName: "",
     searchResult: null,
   };
 

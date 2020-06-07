@@ -34,7 +34,7 @@ const help = (props) => {
         {links.map((link, i) => {
           return (
             <a key={i} href={link.link}>
-              <img src={link.icon} />
+              <img src={link.icon} alt="link"/>
             </a>
           );
         })}
