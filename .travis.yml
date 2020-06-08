@@ -1,0 +1,14 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t stephengrider/react-test -f ./Dockerfile ./
+
+script:
+  - docker run stephengrider/react-test npm test -- --coverage
+
+after_success:
+  - docker build --build-arg api_key="$FRIEBASE_API_KEY" -t tombenjaminmorris/admin ./admin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tombenjaminmorris/admin
