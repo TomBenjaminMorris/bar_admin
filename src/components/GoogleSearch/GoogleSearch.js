@@ -4,7 +4,7 @@ import GoogleMapReact from "google-map-react";
 import axios_bars from "../../axios-bars";
 import keys from "../../keys";
 
-const API_KEY = keys.WEB_API_KEY;
+const API_KEY = keys.MAP_API_KEY;
 
 class SearchBar extends React.Component {
   constructor(props) {
