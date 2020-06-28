@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GoogleSearch from "../GoogleSearch/GoogleSearch";
 
 import classes from "./SuperUser.css";
 // import Button from "../UI/Button/Button";
@@ -13,7 +14,7 @@ class SuperUser extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ searchName: event.target.value })
+    this.setState({ searchName: event.target.value });
     axios_bars
       .get("/find", { params: { name: event.target.value } })
       .then((response) => {
@@ -26,27 +27,30 @@ class SuperUser extends Component {
 
   handleClickLocation = (location) => {
     this.props.locationIdUpdate(location.place_id);
-    this.setState({searchResult: null, searchName: location.name})
+    this.setState({ searchResult: null, searchName: location.name });
   };
 
   render() {
     const results = (
       <div className={classes.ResultWrapper}>
-        {this.state.searchResult && this.state.searchResult.map((location, i) => {
-          return (
-            <div
-              key={i}
-              className={classes.Result}
-              onClick={() => this.handleClickLocation(location)}
-            >
-              {location.name}
-            </div>
-          );
-        })}
+        {this.state.searchResult &&
+          this.state.searchResult.map((location, i) => {
+            return (
+              <div
+                key={i}
+                className={classes.Result}
+                onClick={() => this.handleClickLocation(location)}
+              >
+                {location.name}
+              </div>
+            );
+          })}
       </div>
     );
     return (
       <div className={classes.SuperUser}>
+        <h1>Add New Location</h1>
+        <GoogleSearch />
         <h1>Switch Location</h1>
         <form onSubmit={this.handleSubmit}>
           <input
