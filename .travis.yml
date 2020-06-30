@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build --build-arg api_key="$FRIEBASE_API_KEY" -t tombenjaminmorris/admin ./
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tombenjaminmorris/admin
