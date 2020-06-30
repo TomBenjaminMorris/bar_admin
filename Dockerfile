@@ -4,7 +4,9 @@ COPY ./package.json ./
 RUN npm install
 COPY . .
 ARG api_key=defaultkey
-ENV REACT_APP_APIKEY=${api_key}
+ENV REACT_APP_API_KEY=${api_key}
+ARG map_api_key=defaultkey
+ENV REACT_APP_MAP_API_KEY=${map_api_key}
 RUN yarn run build
 
 FROM nginx
