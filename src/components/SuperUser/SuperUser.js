@@ -30,6 +30,31 @@ class SuperUser extends Component {
     this.setState({ searchResult: null, searchName: location.name });
   };
 
+  handleDeleteBar = (e, location) => {
+    // Don't propogate the event to the document
+    if (e.stopPropagation) {
+      e.stopPropagation(); // W3C model
+    } else {
+      e.cancelBubble = true; // IE model
+    }
+
+    const answer = window.confirm("Are you sure you want to delete this bar?");
+    if (!answer) {
+      return;
+    }
+
+    axios_bars
+      .delete("/bar?place_id=" + location.place_id)
+      .then(function (response) {
+        window.alert("Bar Deleted");
+      })
+      .catch(function (error) {
+        window.alert("There was an error deleting the bar");
+      });
+
+    this.setState({ searchName: "", searchResult: null });
+  };
+
   render() {
     const results = (
       <div className={classes.ResultWrapper}>
@@ -42,6 +67,12 @@ class SuperUser extends Component {
                 onClick={() => this.handleClickLocation(location)}
               >
                 {location.name}
+                <div
+                  className={classes.deleteBar}
+                  onClick={(e) => this.handleDeleteBar(e, location)}
+                >
+                  x
+                </div>
               </div>
             );
           })}
