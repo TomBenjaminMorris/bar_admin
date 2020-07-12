@@ -57,7 +57,13 @@ class Deals extends Component {
       this.setState({ errorMessage: "You must populate all fields" });
     }
     else {
-      const finalLocation = { ...this.state.locationDetails };
+
+      const date = new Date()
+      const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long', day: '2-digit' }) 
+      const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date ) 
+      const lastUpdated = `${day} ${month} ${year}`;
+
+      const finalLocation = { ...this.state.locationDetails, lastUpdated  };
       this.state.newDeal
       ? finalLocation.deals.push(deal)
       : (finalLocation.deals[this.state.dealIndex] = deal);
