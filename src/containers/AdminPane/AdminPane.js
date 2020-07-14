@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../axios-bars";
 import { connect } from "react-redux";
-import asyncComponent from '../../hoc/asyncComponent/asyncComponent';
+import asyncComponent from "../../hoc/asyncComponent/asyncComponent";
 
 import classes from "./AdminPane.css";
 import LocationDetails from "../../components/LocationDetails/LocationDetails";
@@ -11,14 +11,15 @@ import Deals from "../../components/Deals/Deals";
 import SuperUser from "../../components/SuperUser/SuperUser";
 import * as actions from "../../store/actions/index";
 import DefaultView from "../../components/DefaultView/DefaultView";
+import Photos from "../../components/Photos/Photos";
 
 const asyncHelpComponent = asyncComponent(() => {
   return import("../../components/Help/Help");
-})
+});
 
 const asyncLogoutComponent = asyncComponent(() => {
   return import("../Auth/Logout/Logout");
-})
+});
 
 class AdminPane extends Component {
   constructor(props) {
@@ -103,7 +104,11 @@ class AdminPane extends Component {
       <SuperUser locationIdUpdate={this.props.locationIdUpdate} />
     );
 
-    const PhotosDetailsBlock = <div>Photos functionality coming soon...</div>;
+    const PhotosDetailsBlock = false ? (
+      <Photos locationDetails={this.props.locationDetails} />
+    ) : (
+      <div>Photos functionality coming soon...</div>
+    );
 
     const StatsDetailsBlock = <div>Statistics interface coming soon...</div>;
 
