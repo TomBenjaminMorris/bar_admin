@@ -57,6 +57,12 @@
 .postInput {
   width: 75%;
   font-size: 20px;
+  padding: 5px;
+}
+
+.PostLength {
+  display: inline;
+  padding: 20px;
 }
 
 .spinner {

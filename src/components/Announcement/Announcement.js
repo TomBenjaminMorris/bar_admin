@@ -15,6 +15,8 @@ class Announcement extends Component {
     this.state = {
       locationDetails: this.props.locationDetails,
       editingAnnouncement: false,
+      postLength: this.props.locationDetails.announcement &&
+      this.props.locationDetails.announcement.post.length,
       newPost:
         this.props.locationDetails.announcement &&
         this.props.locationDetails.announcement.post,
@@ -44,6 +46,10 @@ class Announcement extends Component {
   }
 
   onSave = () => {
+    if(this.state.postLength > 40){
+      window.alert("Status can't be longer than 40 characters");
+      return false;
+    }
     const now = new Date();
     const announcement = {
       post: this.state.newPost,
@@ -55,19 +61,21 @@ class Announcement extends Component {
       editingAnnouncement: false,
       locationDetails: finalLocation,
     });
+    window.alert("Status updated! This status will last 24h before being cleared");
   };
 
   editPost = () => {
     const { newPost } = this.state;
     return (
-      <div>
+      <div >
         <input
           type="text"
           value={newPost}
           className={classes.postInput}
-          onChange={(e) => this.setState({ newPost: e.target.value })}
+          onChange={(e) => this.setState({ newPost: e.target.value, postLength: e.target.value.length })}
           ref={(node) => (this.postInput = node)}
         />
+        <div className={classes.PostLength}>{this.state.postLength}</div>
         <div className={classes.buttons}>
           <Button btnType={"Success"} clicked={this.onSave}>
             Save
