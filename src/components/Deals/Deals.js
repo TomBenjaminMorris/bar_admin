@@ -7,6 +7,7 @@ import Modal from "../UI/Modal/Modal";
 import EditingDeal from "./EditingDeal/EditingDeal";
 import Spinner from "../UI/Spinner/Spinner";
 import Button from "../UI/Button/Button";
+import Announcement from "../Announcement/Announcement";
 
 class Deals extends Component {
   constructor(props) {
@@ -108,6 +109,7 @@ class Deals extends Component {
     );
     return (
       <div className={classes.Deals}>
+        <Announcement save={this.props.save} locationDetails={this.state.locationDetails} loading={this.props.loading} />
         <h1>Deals</h1>
         <Line classOverride="MainBody" />
         {dealsArray.map((deal, i) => {
